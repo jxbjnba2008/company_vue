@@ -153,7 +153,8 @@
 
 }
 .nuser-left .navi-wrap {
-    width: 250px;
+    width: 210px;
+    margin-left: 37px;
 }
 
 .nuser-left .navi-wrap {
@@ -206,7 +207,7 @@
   margin: -10px -5px -5px -15px;
 }
 .nuser-left .navi ul.nav li li a{
-  padding-left: 38px;
+  padding-left: 30px;
 }
 .nuser-left .nav.nav-sub > li.active > a {
    background-color: #faf2f2;

@@ -183,7 +183,7 @@
 }
 
 .row {
-    margin-right: -55px;
+    margin-right: -5px;
     margin-left: -15px;
 }
 .col-xs-6 {

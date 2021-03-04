@@ -59,7 +59,7 @@
 }
 .m-t {
     margin-top: 15px;
-    margin-left: 320px;
+    margin-left: auto;
 
 }
 h1 {
