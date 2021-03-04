@@ -174,6 +174,107 @@ def page_ipo_info():
         }
         return jsonify(resData)
 
+@app.route('/info_more/hangye/page', methods=['POST'])
+def page_hangye_info():
+    """行业分析列表翻页"""
+    if request.method == 'POST':
+        get_data = json.loads(request.get_data(as_text=True))
+        pageNo = get_data['pageNo']
+        pageSize = get_data['pageSize']
+        # key = request.form.get('key')
+        print('-----pageNo-----{}'.format(pageNo))
+
+        companys = company()
+        search_data = companys.get_hangye_page(pageNo, pageSize)
+        # print(search_data)
+        if len(search_data) == 0:
+            resData = {
+                "resCode": 0, # 非0即错误 1
+                "data": [],# 数据位置，一般为数组
+                "message": '数据为空'
+            }
+            return jsonify(resData)
+
+        resData = {
+            "resCode": 0, # 非0即错误 1
+            "data": search_data,# 数据位置，一般为数组
+            "message": '搜索结果'
+        }
+        return jsonify(resData)
+    else:
+        resData = {
+            "resCode": 1, # 非0即错误 1
+            "data": [],# 数据位置，一般为数组
+            "message": '请求方法错误'
+        }
+        return jsonify(resData)
+
+@app.route('/info_more/hangye/<string:id>', methods=['GET'])
+def hangye_detail(id):
+    """行业分析详细内容"""
+    if request.method == 'GET':
+        companys = company()
+        search_data = companys.get_hangye_detail(id)
+        # 处理图片显示大小问题
+        search_data['html_content'] = search_data['html_content'].replace('<img', '<img style=\'height: auto;max-width: 100%;\'')
+
+        if len(search_data) == 0:
+            resData = {
+                "resCode": 0, # 非0即错误 1
+                "data": [],# 数据位置，一般为数组
+                "message": '数据为空'
+            }
+            return jsonify(resData)
+
+        resData = {
+            "resCode": 0, # 非0即错误 1
+            "data": search_data,# 数据位置，一般为数组
+            "message": '搜索结果'
+        }
+        return jsonify(resData)
+    else:
+        resData = {
+            "resCode": 1, # 非0即错误 1
+            "data": [],# 数据位置，一般为数组
+            "message": '请求方法错误'
+        }
+        return jsonify(resData)
+
+@app.route('/info_more/death/page', methods=['POST'])
+def page_death_info():
+    """死亡公司列表翻页"""
+    if request.method == 'POST':
+        get_data = json.loads(request.get_data(as_text=True))
+        pageNo = get_data['pageNo']
+        pageSize = get_data['pageSize']
+        # key = request.form.get('key')
+        print('-----pageNo-----{}'.format(pageNo))
+
+        companys = company()
+        search_data = companys.get_death_page(pageNo, pageSize)
+        # print(search_data)
+        if len(search_data) == 0:
+            resData = {
+                "resCode": 0, # 非0即错误 1
+                "data": [],# 数据位置，一般为数组
+                "message": '数据为空'
+            }
+            return jsonify(resData)
+
+        resData = {
+            "resCode": 0, # 非0即错误 1
+            "data": search_data,# 数据位置，一般为数组
+            "message": '搜索结果'
+        }
+        return jsonify(resData)
+    else:
+        resData = {
+            "resCode": 1, # 非0即错误 1
+            "data": [],# 数据位置，一般为数组
+            "message": '请求方法错误'
+        }
+        return jsonify(resData)
+
 @app.route('/info_more/rongzi/page', methods=['POST'])
 def page_rongzi_info():
     """融资信息列表翻页"""

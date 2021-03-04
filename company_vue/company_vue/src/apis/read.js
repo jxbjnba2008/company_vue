@@ -1,13 +1,19 @@
 import service from "../utils/request.js";
 //import { rsaEncrypt } from "../utils/rsa.js";
 
+export function GetHangyeDetail(url){
+    return service.request({
+        method: "get",
+        url: url
+    });
+}
 
 export function GetInfoPost(postParams){
     return service.request({
         method: "post",
         url: postParams.url,
         data:{
-            key: postParams.key, // newest
+            key: postParams.key,
         }
     });
 }

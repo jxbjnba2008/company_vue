@@ -75,6 +75,42 @@ class company(object):
         else:
             return None
 
+    def get_hangye_page(self, pageNo, pageSize):
+        data = []
+        sql = "SELECT * from iyiou_analysis order by time desc limit {},{} ".format((pageNo-1)*pageSize, pageSize)
+        rows = self.db.query(sql)
+        for row in rows:
+            data.append(row.as_dict())
+        # print(data)
+        if data:
+            return data
+        else:
+            return None
+
+    def get_hangye_detail(self, id):
+        """获取行业详细内容"""
+        sql = "SELECT * from iyiou_analysis where url='{}'".format('https://www.iyiou.com/analysis/{}'.format(id))
+        row = self.db.query(sql)
+        data = row.as_dict()
+        # print(data)
+        if data:
+            return data[0]
+        else:
+            return None
+
+    def get_death_page(self, pageNo, pageSize):
+        """获取死亡公司列表"""
+        data = []
+        sql = "SELECT * from itjuzi_death order by death_time desc limit {},{} ".format((pageNo-1)*pageSize, pageSize)
+        rows = self.db.query(sql)
+        for row in rows:
+            data.append(row.as_dict())
+        # print(data)
+        if data:
+            return data
+        else:
+            return None
+
     def get_rongzi_page(self, pageNo, pageSize):
         data = []
         sql = "SELECT * from itjuzi_touzi order by event_time desc limit {},{} ".format((pageNo-1)*pageSize, pageSize)

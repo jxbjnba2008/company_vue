@@ -160,7 +160,7 @@
     background: #fff;
     border: solid 1px #eee;
     position: relative;
-    border-radius: 10px;
+    border-radius: 5px;
     /* max-height: 500px; */
     overflow-x: hidden;
     overflow-y: hidden;

@@ -11,28 +11,65 @@
                       </a>
                   </li>
                   <li>
-                      <a href="/info_more/shangshi" style="color:#181818;font-weight: bold">上市信息</a>
+                      <a href="/info_more/death" style="color:#181818;font-weight: bold">死亡公司</a>
                   </li>
                 </ul>
             </div>
             <div class="page-col">
-               <ul class="list-group">
-                  <li class="list-group-item list-item" v-for="(item, i) in items.shangshiItems" :key="i">
-                      <div class="img">
-                          <img alt="上市信息" :src="item.img_base">
+               <div class="list-group">
+                  <div class="list-group-item list-item" v-for="(item, i) in items.deathItems" :key="i">
+                      <div style="width: 90px;margin-right: 20px">
+                        <img :src="item.img" style="max-width:95%;">
                       </div>
                       <div class="title">
-                          <a target="_blank" :href="item.link">
-                            {{item.title}}
+                          <a style="color: #4c5154;font-weight: 650;font-size: 20px">
+                            {{item.com_name}}
                           </a>
+                          <p style="margin: 10px 0 15px;font-size:14px;color: #808080">{{item.com_prov}}</p>
+                          <p style="margin: 10px 0 15px;font-size:14px;color: #808080">{{item.cat_name}}</p>
+                          <p style="margin: 10px 0 15px;font-size:14px;color: #f84747">{{item.com_fund_status_name}}</p>
                       </div>
                       <div class="desc">
-                          <a target="_blank">{{item.desc1}}</a>
-                          <span>{{item.desc2}}</span>
-                          <span class="time">{{item.time}}</span>
+                          <p>
+                            <label>团队：</label>
+                            <span>
+                              <a style="color: #f84747">{{item.team}}</a>
+                            </span>
+                          </p>
+                          <p>
+                            <label>成立时间：</label>
+                            <span>
+                              <a style="color: #222222">{{item.born_time}}</a>
+                            </span>
+                          </p>
+                          <p>
+                            <label>关闭时间：</label>
+                            <span>
+                              <a style="color: #222222">{{formatter(item.death_time, 'yyyy-MM-dd')}}</a>
+                            </span>
+                          </p>
+                          <p>
+                            <label>死亡原因：</label>
+                            <span>
+                              <a style="color: #f84747">{{item.die_course}}</a>
+                            </span>
+                          </p>
+                          <p>
+                            <label>行业标签：</label>
+                            <span>
+                              <a style="color: #f84747">{{item.tag}}</a>
+                            </span>
+                          </p>
+                          <p>
+                            <label>公司简介：</label>
+                            <span style="line-height:26px">
+                              {{item.com_des}}
+                            </span>
+                          </p>
                       </div>
-                  </li>
-               </ul>
+
+                  </div>
+               </div>
             </div>
             <div class="center" style="margin: auto; margin-top: 60px">
                   <ul class="pagination">
@@ -70,22 +107,24 @@
     import Header from "../components/Header.vue";
     import Footer from "../components/Footer.vue";
     import {GetPagePost} from "@/apis/read.js";
+    import {formatter} from "../utils/date.js";
 
     export default {
-      name: "IpoInfoMore.vue",
+      name: "DeathCompany.vue",
       components: {
         Header,
         Footer,
         },
-        data() {
+      data() {
             return {
+                formatter,
                 url: this.$route.path,
                 pageNo: 1, //当前页码
                 pageTotal: 100, //总页数
                 pageSize: 10, //每页条数
 
                 items: {
-                    shangshiItems:[],
+                    deathItems:[],
                 },
             }
         },
@@ -99,7 +138,7 @@
 
                 GetPagePost(this.url, this.pageNo, this.pageSize).then(resp => {
                     console.log("Page : resp.data.data", resp.data.data);
-                    this.items.shangshiItems = resp.data.data
+                    this.items.deathItems = resp.data.data
                 });
             },
             //首页
@@ -164,6 +203,7 @@
     width: 936px;
     margin-left: 10px;
 }
+
 .list-group {
     border-radius: 2px;
 }
@@ -174,54 +214,61 @@
 .list-item {
     padding: 12px 15px;
     border-radius: 0px !important;
+    height: 180px;
 }
 .list-group-item {
     border-color: #eeeeee;
 }
 .list-group-item {
     position: relative;
-    display: block;
+    /*display: block;*/
     margin-bottom: -1px;
     background-color: #fff;
     border: 1px solid #ddd;
+    display: flex;
+    height: auto;
 }
-.list-item .img {
-    width: 66px;
-    height: 66px;
-    float: left;
-    margin-right: 15px;
-}
-.list-item .img>img {
-    width: 100%;
+.primary-text {
+    color: #3b3b3b;
+    font-weight: bold;
 }
 .list-item .title {
     font-size: 16px;
-    font-weight: bold;
     line-height: 19px;
-    height: 38px;
+    /*height: 30px;*/
     display: table-cell;
     vertical-align: top;
     color: #333;
+    width: 122px;
+    padding-right: 10px;
+    margin-top: 15px;
+
 }
 .list-item .title>a {
     color: #3c4144;
     text-decoration: none;
 }
 .list-item .desc {
-    font-size: 14px;
-    margin-top: 10px;
+    font-size: 13px;
+    margin-left: 8px;
+    flex: 1;
+
 }
-.list-item .desc>a {
-    margin-right: 15px;
-    color: #666;
+.list-item .desc>p {
+    margin-bottom: -1px;
 }
-.list-item .desc>.time {
-    float: right;
+.list-item .desc>p>label {
+    margin-bottom: 5px;
+    margin-top: 6px;
+    color: #7c7c7c;
 }
-.list-item .desc>span {
-    margin-right: 10px;
-    color: #999;
-}
+/*.list-item .desc>.time {*/
+/*    float: right;*/
+/*}*/
+/*.list-item .desc>span {*/
+/*    margin-right: 10px;*/
+/*    color: #999;*/
+/*}*/
 
 /*分页样式*/
     ul.pagination {

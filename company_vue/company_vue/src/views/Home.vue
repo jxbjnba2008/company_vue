@@ -33,7 +33,7 @@
             <ul class="panel comp-panel">
               <div class="panel-header b-b">
                 <a class="more right-info" href="/info_more/rongzi">查看更多&gt;</a>
-                <h4 style="font-weight: bold">融资信息</h4>
+                <h4 style="font-weight: bold">创投资讯</h4>
               </div>
               <ul class="list-group">
                 <li class="list-group-item list-item" v-for="(item,i) in items.rongziItems" :key="i">
