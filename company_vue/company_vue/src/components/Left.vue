@@ -12,7 +12,7 @@
                         <i class="fa fa-fw fa-angle-right text"></i>
                       </span>
                       <span class="pa pa-user"></span>
-                      <span class="font-bold">首页</span>
+                      <span class="font-bold">科技型企业库</span>
                     </a>
                     <ul class="nav nav-sub dk" style="display: block;">
                       <li v-for="(item,index) in lables" :key="index" :class="item.link === now_url ? 'active':''">
@@ -140,25 +140,25 @@
     top: 3px;
 }
 .font-bold {
-    font-weight: 600;
+    font-weight: 550;
 }
 
 .elib-left {
-    width: 198px;
+    width: 17%;
     float: left;
 
 }
-.elib-left .nuser-left {
-    padding-left: 1px;
-
-}
+//.elib-left .nuser-left {
+//    padding-left: 1px;
+//
+//}
 .nuser-left .navi-wrap {
-    width: 210px;
-    margin-left: 37px;
+    width: 117%;
+    margin-left: auto;
 }
 
 .nuser-left .navi-wrap {
-    background: #fff;
+    background: #fffcf5;
     border: solid 1px #eee;
     position: relative;
     border-radius: 5px;
@@ -167,9 +167,9 @@
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
 }
-.m-b-lg {
-    margin-bottom: 30px;
-}
+//.m-b-lg {
+//    margin-bottom: 30px;
+//}
 .nav {
     padding-left: 0;
     margin-bottom: 0;
@@ -207,7 +207,7 @@
   margin: -10px -5px -5px -15px;
 }
 .nuser-left .navi ul.nav li li a{
-  padding-left: 30px;
+  padding-left: 36px;
 }
 .nuser-left .nav.nav-sub > li.active > a {
    background-color: #faf2f2;

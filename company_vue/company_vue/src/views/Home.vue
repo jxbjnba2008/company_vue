@@ -17,7 +17,7 @@
                       <img :src="item.img_base" alt="上市动态">
                     </div>
                     <div class="title">
-                      <a target="_blank" style="color: #1d1f21;font-weight: 650" :href="item.link">{{item.title}}</a>
+                      <a target="_blank" style="color: #1d1f21;font-weight:650;font-size: 14.5px;" :href="item.link">{{item.title}}</a>
                     </div>
                     <div class="desc" style="margin-top: 25px;">
                       <a>{{item.desc1}}</a>
@@ -38,7 +38,7 @@
               <ul class="list-group">
                 <li class="list-group-item list-item" v-for="(item,i) in items.rongziItems" :key="i">
                     <div class="title">
-                      <a target="_blank" style="color: #1d1f21;font-weight: 650" :href="item.url">{{item.title}}</a>
+                      <a target="_blank" style="color: #1d1f21;font-weight: 650;font-size: 14.5px;" :href="item.url">{{item.title}}</a>
                     </div>
                     <div class="desc">
                       <div>
@@ -53,8 +53,9 @@
           </section>
         </div>
       </div>
-    </div>
-    <div style="margin-top: 1300px"></div>
+      <Right />
+  </div>
+  <div style="margin-top: 1350px"></div>
   <Footer />
 
   </div>
@@ -65,12 +66,14 @@
     import Footer from "../components/Footer.vue";
     import {GetInfoPost} from "@/apis/read";
     import Left from "../components/Left.vue";
+    import Right from "../components/Right.vue"
     import {formatter} from "../utils/date.js";
 
     export default {
       name: 'Home',
       components: {
         Left,
+        Right,
         Header,
         Footer,
         },
@@ -115,13 +118,13 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
-.container {
-    width: 1250px;
-    height: 300px;
-}
+//.container {
+//    width: 1250px;
+//    height: 300px;
+//}
 
 .c-t-cd {
-    margin-top: 20px;
+    margin-top: 1%;
 }
 
 .npanel-body{
@@ -150,9 +153,8 @@
     font-size: 15px;
 }
 .comp-main {
-    width: 850px;
+    width: 60%;
     float: left;
-    margin-left: 45px;
 }
 .elib-content {
     background: #fff;
@@ -183,20 +185,22 @@
 }
 
 .row {
-    margin-right: -5px;
-    margin-left: -15px;
+    margin-left: auto;
 }
 .col-xs-6 {
     width: 100%;
 }
 .panel-header.b-b {
-    border-bottom: solid 3px #bdbdbd;
+    border-bottom: 0px solid #eeeeee;
+    border-top: 1px solid #eeeeee;
+    border-left: 1px solid #eeeeee;
+    border-right: 1px solid #eeeeee;
 }
 
 .panel-header {
     color: #333;
     //border-bottom: none;
-    background: #efefef;
+    background: #fffcf5;
     border-radius: 1px;
     border: solid 1px #bbbbbb
 }
@@ -218,7 +222,7 @@
     width: 65px;
     height: 65px;
     float: left;
-    margin-right: 15px;
+    margin-right: 10px;
 }
 .list-item .img>img {
     width: 100%;
@@ -228,7 +232,7 @@
     //opacity: 0.96;
     -webkit-transform: translatex(25px);
     -moz-transform: translatex(25px);
-    transform: translatex(25px)
+    transform: translatex(10px)
 }
 
 .list-item .title {

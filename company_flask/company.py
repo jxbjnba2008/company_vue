@@ -18,15 +18,18 @@ class company(object):
         # print(data)
         return data
 
+
     def get_home_info(self, key):
         """
-            获取首页上市信息、融资信息
+            获取首页上市信息、融资信息、快讯信息
         """
         data_list = []
         if key == 'shangshi':
             sql = 'select * from qcc_ipodynamics order by time desc limit 5'
-        else:
+        elif key == 'rongzi':
             sql = "select * from itjuzi_touzi where event_type='投资事件' order by event_time desc limit 5"
+        else:
+            sql = 'select * from iyiou_briefing order by time desc limit 10'
         rows = self.db.query(sql)
         for row in rows:
             data_list.append(row.as_dict())
@@ -49,12 +52,35 @@ class company(object):
         return company_list
 
     def get_companys_page(self, company_type, pageNo, pageSize):
+        """
+            公司列表翻页
+        """
         data = []
         emp = {
             'company_type': company_type,
         }
         sql = "SELECT * from qcc_keji_company where company_type=:company_type limit {},{} ".format((pageNo-1)*pageSize, pageSize)
+        sql_num = "SELECT count(*) from qcc_keji_company where company_type=:company_type"
+
         rows = self.db.query(sql, **emp)
+        num = self.db.query(sql_num, **emp)
+        num = num[0]['count(*)']
+
+        for row in rows:
+            data.append(row.as_dict())
+        # print(data)
+        if data:
+            return data, num
+        else:
+            return None
+
+    def get_info_page(self, pageNo, pageSize):
+        """
+            快讯翻页
+        """
+        data = []
+        sql = "SELECT * from iyiou_briefing order by time desc limit {},{} ".format((pageNo-1)*pageSize, pageSize)
+        rows = self.db.query(sql)
         for row in rows:
             data.append(row.as_dict())
         # print(data)
@@ -64,6 +90,9 @@ class company(object):
             return None
 
     def get_ipo_page(self, pageNo, pageSize):
+        """
+            IPO翻页
+        """
         data = []
         sql = "SELECT * from qcc_ipodynamics order by time desc limit {},{} ".format((pageNo-1)*pageSize, pageSize)
         rows = self.db.query(sql)
@@ -76,6 +105,9 @@ class company(object):
             return None
 
     def get_hangye_page(self, pageNo, pageSize):
+        """
+            行业翻页
+        """
         data = []
         sql = "SELECT * from iyiou_analysis order by time desc limit {},{} ".format((pageNo-1)*pageSize, pageSize)
         rows = self.db.query(sql)
@@ -88,7 +120,9 @@ class company(object):
             return None
 
     def get_hangye_detail(self, id):
-        """获取行业详细内容"""
+        """
+            获取行业详细内容
+        """
         sql = "SELECT * from iyiou_analysis where url='{}'".format('https://www.iyiou.com/analysis/{}'.format(id))
         row = self.db.query(sql)
         data = row.as_dict()
@@ -99,7 +133,9 @@ class company(object):
             return None
 
     def get_death_page(self, pageNo, pageSize):
-        """获取死亡公司列表"""
+        """
+            获取死亡公司列表
+        """
         data = []
         sql = "SELECT * from itjuzi_death order by death_time desc limit {},{} ".format((pageNo-1)*pageSize, pageSize)
         rows = self.db.query(sql)
@@ -112,6 +148,9 @@ class company(object):
             return None
 
     def get_rongzi_page(self, pageNo, pageSize):
+        """
+            创投翻页
+        """
         data = []
         sql = "SELECT * from itjuzi_touzi order by event_time desc limit {},{} ".format((pageNo-1)*pageSize, pageSize)
         rows = self.db.query(sql)
@@ -124,7 +163,9 @@ class company(object):
             return None
 
     def get_rongzi_fenlei(self, pageNo, pageSize, tag):
-        """融资分类"""
+        """
+            创投分类
+        """
         data = []
         event_type = TAG.get(tag)
         print(event_type)
@@ -146,7 +187,11 @@ class company(object):
             return None
 
     def get_company_detail(self, company, key):
+        """
+            获取企业详细信息
+        """
         data = []
+        type_list = []
 
         em = {
             'company_name': company,
@@ -161,11 +206,12 @@ class company(object):
         rows = self.db.query(sql, **em)
         for row in rows:
             data.append(row.as_dict())
-        # print(data)
+
         if data and key == 'base':
-            return data[0]
+            type_list = [da.get('company_type') for da in data]
+            return data[0], type_list
         elif data and key != 'base':
-            return data
+            return data, type_list
         else:
             return None
 

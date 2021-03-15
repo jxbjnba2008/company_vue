@@ -78,10 +78,11 @@ def search_infos():
         }
         return jsonify(resData)
 
+
 @app.route('/', methods=['POST'])
 # @cache.cached(timeout=20, key_prefix=make_cache_key)
 def home_info():
-    """主页上市、融资信息"""
+    """主页上市、融资信息、快讯信息"""
     if request.method == 'POST':
         get_data = json.loads(request.get_data(as_text=True))
         key = get_data['key']
@@ -115,7 +116,43 @@ def page_info(company_cate):
         print('-----pageNo-----{}'.format(pageNo))
 
         companys = company()
-        search_data = companys.get_companys_page(company_type, pageNo, pageSize)
+        search_data, num = companys.get_companys_page(company_type, pageNo, pageSize)
+        # print(search_data)
+        if len(search_data) == 0:
+            resData = {
+                "resCode": 0, # 非0即错误 1
+                "data": [], # 数据位置，一般为数组
+                "message": '数据为空'
+            }
+            return jsonify(resData)
+
+        resData = {
+            "resCode": 0, # 非0即错误 1
+            "data": search_data, # 数据位置，一般为数组
+            "message": '搜索结果',
+            "num": int(num / 10) if num % 10 == 0 else int(num / 10) + 1
+        }
+        return jsonify(resData)
+    else:
+        resData = {
+            "resCode": 1, # 非0即错误 1
+            "data": [],# 数据位置，一般为数组
+            "message": '请求方法错误'
+        }
+        return jsonify(resData)
+
+@app.route('/info_more/info/page', methods=['POST'])
+def page_info_info():
+    """快讯列表翻页"""
+    if request.method == 'POST':
+        get_data = json.loads(request.get_data(as_text=True))
+        pageNo = get_data['pageNo']
+        pageSize = get_data['pageSize']
+        # key = request.form.get('key')
+        print('-----pageNo-----{}'.format(pageNo))
+
+        companys = company()
+        search_data = companys.get_info_page(pageNo, pageSize)
         # print(search_data)
         if len(search_data) == 0:
             resData = {
@@ -355,12 +392,13 @@ def company_detail_info(company_name):
         key = get_data['key']
 
         companys = company()
-        sql_data = companys.get_company_detail(company_name, key)
+        sql_data, type_list = companys.get_company_detail(company_name, key)
 
         resData = {
             "resCode": 0, # 非0即错误 1
             "data": sql_data,# 数据位置，一般为数组
-            "message": '搜索结果'
+            "message": '搜索结果',
+            "type_list": type_list
         }
         return jsonify(resData)
     else:

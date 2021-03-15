@@ -49,6 +49,16 @@
                             <span aria-hidden="true">下一页</span>
                           </a>
                       </li>
+
+                      <li @click="finalPage()">
+                          <a aria-label="Next" href="#">
+                            <span aria-hidden="true">尾页</span>
+                          </a>
+                      </li>
+
+                      <li>
+                          <a style="cursor:default">共{{pageTotal}}页</a>
+                      </li>
                   </ul>
               </div>
 
@@ -84,7 +94,7 @@
       return {
         url: this.$route.path,
         pageNo: 1, //当前页码
-        pageTotal: 100, //总页数
+        pageTotal: '', //总页数
         // rows: 200, //总条数
         pageSize: 10, //每页条数
         //显示分页按钮数
@@ -109,6 +119,7 @@
               GetPagePost(this.url, this.pageNo, this.pageSize).then(resp => {
                   console.log("Page : resp.data.data", resp.data.data);
                   this.items.companyInfo = resp.data.data
+                  this.pageTotal = resp.data.num
           });
         },
           //首页
@@ -125,11 +136,16 @@
             this.getData(--this.pageNo);
         }
       },
+
       //下一页
       nextPage:function (){
         if(this.pageNo<this.pageTotal){
             this.getData(++this.pageNo);
         }
+      },
+      //尾页
+      finalPage:function (){
+        this.getData(this.pageTotal)
       },
     }
 }

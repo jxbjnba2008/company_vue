@@ -10,10 +10,13 @@
             <p style="margin-bottom: -10px;">GalaxyInfor</p>
             <em style="font-size: 1px;color: #9d6b6b">More Than Data !</em>
           </b-navbar-brand>
-          <b-navbar-brand class="alsp1" href="/info_more/shangshi">上市信息</b-navbar-brand>
-          <b-navbar-brand class="alsp1" href="/info_more/rongzi">创投资讯</b-navbar-brand>
-          <b-navbar-brand class="alsp1" href="/info_more/hangye">行业分析</b-navbar-brand>
-          <b-navbar-brand class="alsp1" href="/info_more/death">死亡公司</b-navbar-brand>
+          <div style="margin-left: 5.2vw">
+            <b-navbar-brand class="alsp1" href="/info_more/shangshi">上市信息</b-navbar-brand>
+            <b-navbar-brand class="alsp1" href="/info_more/rongzi">创投资讯</b-navbar-brand>
+            <b-navbar-brand class="alsp1" href="/info_more/hangye">行业分析</b-navbar-brand>
+            <b-navbar-brand class="alsp1" href="/info_more/death">死亡公司</b-navbar-brand>
+          </div>
+<!--          <b-navbar-brand class="move"></b-navbar-brand>-->
           <ul  class="navbar-nav ml-auto container1">
             <li  class="form-inline">
               <div  class="form-inline" style="width:470px;">
@@ -70,7 +73,7 @@ export default {
     font-family: DFKai-SB,sans-serif;
     font-weight: bold;
     color: #94000c;
-    margin-left: 11.98vw;
+    margin-left: 15.98vw;
 }
 .alsp1 {
     font-family: KaiTi,serif;
@@ -78,7 +81,57 @@ export default {
     color: #a0323a;
     margin-left: 1.2vw;
     font-size: 1.2vw;
+    transform: translate(-50%, -50%);
+    transition: color .5s;
+    margin-top: 33px;
 }
+.alsp1::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0.4vw;
+    background: #b30707;
+    z-index: -1;
+    transition: width .5s;
+}
+.alsp1:hover::before {
+    width: 4.9vw;
+}
+.move{
+    width: 81px;
+    border-top: 5px solid #a0323a;/*只需要将上边显示出来*/
+    border-radius: 3px;
+
+    position: absolute;
+    left: 356px;
+    top: 60px;
+    transition: left .1s ease-in-out 0.1s;/*包含四个过度属性：执行变换属性、执行时间、速率、延迟*/
+    -webkit-transition: left .2s ease-in-out 0.1s;/*chrome和safari*/
+    -moz-transition: left .2s ease-in-out 0.1s;/*firefox*/
+    -o-transition: left .2s ease-in-out 0.1s;/*opera*/
+}
+.alsp1:nth-child(1):hover~ .move{    /*li元素的父元素的第一个子元素，当鼠标停留其上时，move元素的left属性改变*/
+    left: 0px;
+}
+.alsp1:nth-child(2):hover~ .move{
+    left: 356px;
+}
+.alsp1:nth-child(3):hover~ .move{
+    left: 465px;
+}
+.alsp1:nth-child(4):hover~ .move{
+    left: 596px;
+}
+.alsp1:nth-child(5):hover~ .move{
+    left: 725px;
+}
+.alsp1:nth-child(6):hover~ .move{
+    left: 853px;
+}
+
+
 .btn {
     background-color: #bf5860;
     border-color: #b57f82;
@@ -94,18 +147,10 @@ export default {
     margin-left: auto;
 }
 .container1 {
-    //padding-right: 400px;
     padding-left: 1px;
-    //margin-right: auto;
-    //margin-left: auto;
+
 }
-//.navi-header {
-//    //height: 2.92vw;
-//    background: #ffffff;
-//    position: relative;
-//    z-index: 1000;
-//    min-width: 65.1vw;
-//}
+
 .box-shadow {
     box-shadow: 0 2px 2px rgba(0,0,0,0.05), 0 1px 0 rgba(0,0,0,0.05);
 }

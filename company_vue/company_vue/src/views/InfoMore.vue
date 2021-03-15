@@ -11,25 +11,21 @@
                       </a>
                   </li>
                   <li>
-                      <a href="/info_more/shangshi" style="color:#181818;font-weight: bold">上市信息</a>
+                      <a href="/info_more/info" style="color:#181818;font-weight: bold">快讯</a>
                   </li>
                 </ul>
             </div>
             <div class="page-col">
                <ul class="list-group">
-                  <li class="list-group-item list-item" v-for="(item, i) in items.shangshiItems" :key="i">
-                      <div class="img">
-                          <img alt="上市信息" :src="item.img_base">
-                      </div>
+                  <li class="list-group-item list-item" v-for="(item, i) in items.infoItems" :key="i">
                       <div class="title">
-                          <a target="_blank" :href="item.link">
+                          <a target="_blank" :href="item.url">
                             {{item.title}}
                           </a>
                       </div>
                       <div class="desc">
-                          <a target="_blank">{{item.desc1}}</a>
-                          <span>{{item.desc2}}</span>
-                          <span class="time">{{item.time}}</span>
+                          <span>{{item.type}}</span>
+                          <span class="time">{{formatter(item.time, 'yyyy-MM-dd hh:mm')}}</span>
                       </div>
                   </li>
                </ul>
@@ -70,22 +66,24 @@
     import Header from "../components/Header.vue";
     import Footer from "../components/Footer.vue";
     import {GetPagePost} from "@/apis/read.js";
+    import {formatter} from "../utils/date.js";
 
     export default {
-      name: "IpoInfoMore.vue",
+      name: "InfoMore.vue",
       components: {
         Header,
         Footer,
         },
         data() {
             return {
+                formatter,
                 url: this.$route.path,
                 pageNo: 1, //当前页码
                 pageTotal: 100, //总页数
                 pageSize: 10, //每页条数
 
                 items: {
-                    shangshiItems:[],
+                    infoItems:[],
                 },
             }
         },
@@ -99,7 +97,7 @@
 
                 GetPagePost(this.url, this.pageNo, this.pageSize).then(resp => {
                     console.log("Page : resp.data.data", resp.data.data);
-                    this.items.shangshiItems = resp.data.data
+                    this.items.infoItems = resp.data.data
                 });
             },
             //首页
@@ -203,10 +201,10 @@
     width: 100%;
 }
 .list-item .title {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     line-height: 19px;
-    height: 38px;
+    height: 25px;
     display: table-cell;
     vertical-align: top;
     color: #333;

@@ -6,12 +6,12 @@
         <div class="company-box">
             <div class="new-box new-box-p">
                 <div class="titlebar">
-                    <h2 class="title-info"> 工商信息 </h2>
+                    <h2 class="title-info"> 企业工商信息 </h2>
                 </div>
                 <section class="section-box">
                     <div class="tcaption">
-                        <span class="title">{{url.replace('/company_detail/', '')}} -> </span>
-                        <span class="">基本信息</span>
+                        <span class="title">{{url.replace('/company_detail/', '') + '（' + items.type.join(' 、') + '）'}}-> </span>
+                        <span class="el-title">基本信息</span>
                         <table class="newtable">
                             <tbody>
                                 <tr>
@@ -85,8 +85,8 @@
                 </section>
                 <section class="section-box">
                     <div class="tcaption">
-                        <span class="title">{{url.replace('/company_detail/', '')}} -> </span>
-                        <span class="">股东信息</span>
+                        <span class="title">{{url.replace('/company_detail/', '') + '（' + items.type.join(' 、') + '）'}}-> </span>
+                        <span class="el-title">股东信息</span>
                         <table class="newtable">
                             <tbody>
                                 <tr>
@@ -113,8 +113,8 @@
                 </section>
                 <section class="section-box">
                     <div class="tcaption">
-                        <span class="title">{{url.replace('/company_detail/', '')}} -> </span>
-                        <span class="">变更信息</span>
+                        <span class="title">{{url.replace('/company_detail/', '') + '（' + items.type.join(' 、') + '）'}}-> </span>
+                        <span class="el-title">变更信息</span>
                         <table class="newtable">
                             <tbody>
                                 <tr>
@@ -184,7 +184,8 @@
           items: {
               baseInfo: {},
               changeInfo: [],
-              partnerInfo: []
+              partnerInfo: [],
+              type: []
           }
         }
       },
@@ -193,6 +194,7 @@
         GetInfoPost(this.baseParams).then(resp =>{
             console.log("In baseInfo resp.data = ", resp.data.data);
             this.items.baseInfo = resp.data.data;
+            this.items.type = resp.data.type_list;
         });
 
         GetInfoPost(this.changeParams).then(resp =>{
@@ -219,7 +221,7 @@
     }
 
     .company-box {
-        margin-left: 266px;
+        margin-left: 228px;
     }
     .new-box-p {
         padding: 20px;
@@ -227,7 +229,7 @@
     }
     .new-box {
         background: #ffffff;
-        border-radius: 10px;
+        border-radius: 5px;
         /*-webkit-box-shadow: 0 0 6px 0 rgba(93,82,77,.08);*/
         box-shadow: 0 0 6px 0 rgba(93,82,77,.08);
         margin-bottom: 10px;
@@ -259,11 +261,14 @@
     }
     .tcaption .title {
         font-size: 16px;
-        color: #c64f4f;
+        color: #565656;
         font-weight: 550;
         /*margin-left: 20px;*/
         display: inline;
         line-height: 1.8;
+    }
+    .tcaption .el-title {
+      color: #e24848;
     }
     .newtable {
         width: 100%;
