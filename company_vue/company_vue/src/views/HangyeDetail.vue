@@ -48,6 +48,7 @@
         GetHangyeDetail(this.url).then(resp =>{
             console.log("In baseInfo resp.data = ", resp.data.data);
             this.items.baseInfo = resp.data.data;
+            document.title = this.items.baseInfo.title
         });
       }
     }

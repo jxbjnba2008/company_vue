@@ -1,5 +1,5 @@
 <template>
-  <header class="box-shadow ">
+  <header class="box-shadow">
     <div>
       <b-navbar toggleable="lg" type="light" variant="light">
 <!--        <b-navbar-brand><img src="https://www.qcc.com/material/theme/chacha/cms/v2/images/logo4.png" alt="" height="50" width="80"></b-navbar-brand>-->
@@ -10,7 +10,7 @@
             <p style="margin-bottom: -10px;">GalaxyInfor</p>
             <em style="font-size: 1px;color: #9d6b6b">More Than Data !</em>
           </b-navbar-brand>
-          <div style="margin-left: 5.2vw">
+          <div style="margin-left: 6.5%">
             <b-navbar-brand class="alsp1" href="/info_more/shangshi">上市信息</b-navbar-brand>
             <b-navbar-brand class="alsp1" href="/info_more/rongzi">创投资讯</b-navbar-brand>
             <b-navbar-brand class="alsp1" href="/info_more/hangye">行业分析</b-navbar-brand>
@@ -73,7 +73,7 @@ export default {
     font-family: DFKai-SB,sans-serif;
     font-weight: bold;
     color: #94000c;
-    margin-left: 15.98vw;
+    margin-left: 16%;
 }
 .alsp1 {
     font-family: KaiTi,serif;

@@ -11,6 +11,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 
+// 设置浏览器标题
+Vue.directive('title', {
+  inserted: function (el, binding) {
+    document.title = el.dataset.title
+  }
+});
 
 Vue.config.productionTip = false;
 

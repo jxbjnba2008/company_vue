@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #f6f6f6;">
+  <div style="background-color: #f6f6f6;" v-title data-title="首页 Galaxy Information">
   <Header />
   <div class="container c-t-cd">
       <Left />
@@ -19,10 +19,10 @@
                     <div class="title">
                       <a target="_blank" style="color: #1d1f21;font-weight:650;font-size: 14.5px;" :href="item.link">{{item.title}}</a>
                     </div>
-                    <div class="desc" style="margin-top: 25px;">
+                    <div class="desc1" style="margin-top: 25px;">
                       <a>{{item.desc1}}</a>
                       <span>{{item.desc2}}</span>
-                      <span class="time">{{item.time}}</span>
+                      <span class="time">{{formatter(item.time, 'yyyy-MM-dd')}}</span>
                     </div>
                 </li>
               </ul>
@@ -40,14 +40,13 @@
                     <div class="title">
                       <a target="_blank" style="color: #1d1f21;font-weight: 650;font-size: 14.5px;" :href="item.url">{{item.title}}</a>
                     </div>
-                    <div class="desc">
+                    <div class="desc2">
                       <div>
                         <a :href="item.url" style="color: #535863; text-decoration: none;">{{item.des}}</a>
                       </div>
                       <span class="time" style="margin-top: 10px;">{{formatter(item.event_time, 'yyyy-MM-dd')}}</span>
                     </div>
                 </li>
-
               </ul>
             </ul>
           </section>
@@ -64,7 +63,7 @@
 <script>
     import Header from "../components/Header.vue";
     import Footer from "../components/Footer.vue";
-    import {GetInfoPost} from "@/apis/read";
+    import {GetInfoPost} from "../apis/read";
     import Left from "../components/Left.vue";
     import Right from "../components/Right.vue"
     import {formatter} from "../utils/date.js";
@@ -153,7 +152,7 @@
     font-size: 15px;
 }
 .comp-main {
-    width: 60%;
+    width: 61%;
     float: left;
 }
 .elib-content {
@@ -185,7 +184,7 @@
 }
 
 .row {
-    margin-left: auto;
+    margin-left: 1%;
 }
 .col-xs-6 {
     width: 100%;
@@ -248,24 +247,42 @@
     text-decoration: none;
 }
 
-.list-item .desc {
+.list-item .desc1 {
     font-size: 14px;
     margin-top: 15px;
+    margin-left: 60%;
 }
 
-.list-item .desc>a {
+.list-item .desc1>a {
     margin-right: 35px;
     color: #999;
 }
 
-.list-item .desc>span {
+.list-item .desc1>span {
     margin-right: 10px;
     color: #999;
 }
-.list-item .desc>.time {
+.list-item .desc1>.time {
     float: left;
+    margin-left: -119%;
+}
+.list-item .desc2 {
+  font-size: 14px;
+  margin-top: 15px;
 }
 
+.list-item .desc2>a {
+  margin-right: 35px;
+  color: #999;
+}
+
+.list-item .desc2>span {
+  margin-right: 10px;
+  color: #999;
+}
+.list-item .desc2>.time {
+  float: left;
+}
 .b-b {
     border-bottom: 1px solid #eeeeee;
 }

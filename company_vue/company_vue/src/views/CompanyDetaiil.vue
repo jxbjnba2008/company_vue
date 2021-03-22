@@ -6,11 +6,16 @@
         <div class="company-box">
             <div class="new-box new-box-p">
                 <div class="titlebar">
+                    <button onclick="history.back();" class="button">
+
+                    </button>
                     <h2 class="title-info"> 企业工商信息 </h2>
                 </div>
                 <section class="section-box">
                     <div class="tcaption">
-                        <span class="title">{{url.replace('/company_detail/', '') + '（' + items.type.join(' 、') + '）'}}-> </span>
+                        <span class="title">{{url.replace('/company_detail/', '')}}</span>
+                        <span style="color: #898989">{{'（ ' + items.type.join(' 、') + ' ）'}}</span>
+                        <span style="font-size: large">-> </span>
                         <span class="el-title">基本信息</span>
                         <table class="newtable">
                             <tbody>
@@ -85,7 +90,9 @@
                 </section>
                 <section class="section-box">
                     <div class="tcaption">
-                        <span class="title">{{url.replace('/company_detail/', '') + '（' + items.type.join(' 、') + '）'}}-> </span>
+                        <span class="title">{{url.replace('/company_detail/', '')}}</span>
+                        <span style="color: #898989">{{'（ ' + items.type.join(' 、') + ' ）'}}</span>
+                        <span style="font-size: large">-> </span>
                         <span class="el-title">股东信息</span>
                         <table class="newtable">
                             <tbody>
@@ -113,7 +120,9 @@
                 </section>
                 <section class="section-box">
                     <div class="tcaption">
-                        <span class="title">{{url.replace('/company_detail/', '') + '（' + items.type.join(' 、') + '）'}}-> </span>
+                        <span class="title">{{url.replace('/company_detail/', '')}}</span>
+                        <span style="color: #898989">{{'（ ' + items.type.join(' 、') + ' ）'}}</span>
+                        <span style="font-size: large">-> </span>
                         <span class="el-title">变更信息</span>
                         <table class="newtable">
                             <tbody>
@@ -157,7 +166,7 @@
     import Header from "../components/Header.vue";
     import Footer from "../components/Footer.vue";
     import Left from "../components/Left.vue";
-    import { GetInfoPost } from "@/apis/read.js";
+    import { GetInfoPost } from "../apis/read.js";
 
     export default {
       name: "CompanyDetaiil.vue",
@@ -195,6 +204,7 @@
             console.log("In baseInfo resp.data = ", resp.data.data);
             this.items.baseInfo = resp.data.data;
             this.items.type = resp.data.type_list;
+            document.title = this.items.baseInfo.company_name;
         });
 
         GetInfoPost(this.changeParams).then(resp =>{
@@ -245,6 +255,18 @@
         font-weight: 700;
         display: inline-block;
     }
+    .button {
+      background-color: Transparent;
+      outline: none;
+      /*background-color: white;*/
+      border-style: none;
+      background-image: url(../assets/返回.jpg);
+      width: 68px;
+      height: 45px;
+      /*margin: -25px 0 0 0;*/
+      margin-top: -25px;
+      margin-left: -15px;
+    }
     h1, h2, h3, h4, h5, h6 {
         margin: 0;
     }
@@ -269,6 +291,8 @@
     }
     .tcaption .el-title {
       color: #e24848;
+      font-family: 楷体,serif;
+      font-weight: bold;
     }
     .newtable {
         width: 100%;

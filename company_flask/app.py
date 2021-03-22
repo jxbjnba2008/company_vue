@@ -1,15 +1,15 @@
+from gevent import monkey
+from gevent.pywsgi import WSGIServer
+monkey.patch_all()
+
 from flask import Flask
 from flask_cors import CORS
 from flask import jsonify, request
 from company import company
 import json
 # from flask_cache import Cache
-from gevent import monkey
-from gevent.pywsgi import WSGIServer
 from settings import TEC
 
-
-monkey.patch_all()
 
 app = Flask(__name__)
 CORS(app)

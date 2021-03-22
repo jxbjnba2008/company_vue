@@ -7,7 +7,7 @@
               <b-nav class="navi">
                 <ul class="nav m-b-lg">
 					        <li class="active">
-                    <a href="/">
+                    <a href="/" style="margin-top: 6px">
                       <span class="pull-right text-muted">
                         <i class="fa fa-fw fa-angle-right text"></i>
                       </span>
@@ -172,7 +172,7 @@
 //}
 .nav {
     padding-left: 0;
-    margin-bottom: 0;
+    margin-bottom: 0.5em;
     list-style: none;
 }
 .fa-fw {
@@ -207,7 +207,7 @@
   margin: -10px -5px -5px -15px;
 }
 .nuser-left .navi ul.nav li li a{
-  padding-left: 36px;
+  padding-left: 16%;
 }
 .nuser-left .nav.nav-sub > li.active > a {
    background-color: #faf2f2;
@@ -221,12 +221,12 @@
 .nuser-left .navi ul.nav li a {
   position: relative;
   display: block;
-  padding: 8px 94px 7px 20px;
+  padding: 10px 70px 10px 20px;
   font-weight: normal;
   text-transform: none;
   text-decoration: none;
-  width:300px;
-  height:40px;
+  width: 115%;
+  height: 6%;
   -webkit-transition: background-color 0.2s ease-in-out 0s;
   transition: background-color 0.2s ease-in-out 0s;
 }

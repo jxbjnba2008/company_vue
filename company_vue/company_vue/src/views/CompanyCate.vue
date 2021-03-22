@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #f6f6f6;">
+  <div style="background-color: #f6f6f6;" v-title data-title="企业列表">
     <Header />
   <div class="container m-t-md">
     <Left />
@@ -79,7 +79,7 @@
     import Header from "../components/Header.vue";
     import Footer from "../components/Footer.vue";
     import Left from "../components/Left.vue";
-    import {GetPagePost} from "@/apis/read.js";
+    import {GetPagePost} from "../apis/read.js";
 
 
     export default {
@@ -103,13 +103,14 @@
         // showPagesStart: 1,
         //结束显示的分页按钮
         // showPageEnd: 100,
+        title: '',
         items: {
           companyInfo: []
         }
       }
     },
     created() {
-        this.getData()
+        this.getData();
     },
 
     methods:{

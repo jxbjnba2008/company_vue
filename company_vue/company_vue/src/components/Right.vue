@@ -4,7 +4,7 @@
 
             <div class="eo-title-box fz18">
               <span class="span-line">快 讯</span>
-                <a href="/info_more/info" style="margin-left: 127px;color: #94000c;font-size: 14px">更多></a>
+                <a href="/info_more/info" style="margin-left: 58%;color: #94000c;font-size: 14px">更多></a>
             </div>
             <div class="ranking_wrap ranking_roll">
             <vue-seamless-scroll :data="items.InfoItems" class="seamless-warp" :class-option="classOption">
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-    import {GetInfoPost} from "@/apis/read.js";
+    import {GetInfoPost} from "../apis/read.js";
     import {formatter} from "../utils/date.js";
     import vueSeamlessScroll from 'vue-seamless-scroll'
 
@@ -110,11 +110,11 @@
     overflow: hidden;
 }
 .eo-home-right {
-  width: 21%;
+  width: 19.5%;
   margin-left: auto;
 }
 .eo-briefing {
-    padding: 15px 12px 12px;
+    padding: .6rem .6rem 1rem;
     box-sizing: border-box;
     border: 1px solid #eaeaea;
     overflow: hidden;
@@ -132,15 +132,15 @@
 .eo-title-box.fz18 {
     font-size: 18px;
     line-height: 18px;
-    margin-bottom: 24px;
+    margin: 6px 0 24px 4px;
 }
 .eo-title-box .span-line:after {
     content: "";
     position: absolute;
     top: 26px;
-    left: 0px;
-    width: 21%;
-    height: 4px;
+    left: 0;
+    width: 22%;
+    height: 5px;
     border-radius: 4px;
     background: #d25720;
     color: #f04b00;
@@ -169,7 +169,7 @@ li .time {
     //line-height: 16px;
     display: flex;
     align-items: center;
-    margin-left: 140px;
+    margin-left: 68%;
 }
 .eo-bottom-dashed {
     border-bottom: 1px dotted rgb(250, 122, 122);

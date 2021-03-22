@@ -1,5 +1,5 @@
 <template>
-    <div style="background-color: #f6f6f6;">
+    <div style="background-color: #f6f6f6;" v-title data-title="行业分析">
       <Header />
       <div class="container m-t">
           <div class="row">
