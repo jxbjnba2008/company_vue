@@ -409,6 +409,32 @@ def company_detail_info(company_name):
         }
         return jsonify(resData)
 
+@app.route('/map/<string:map_type>', methods=['POST'])
+# @cache.cached(timeout=50, key_prefix=make_cache_key)
+def map_info(map_type):
+    """地图页"""
+    if request.method == 'POST':
+        get_data = json.loads(request.get_data(as_text=True))
+        key = get_data['key']
+
+        companys = company()
+        company_type, data = companys.get_map_detail(map_type, key)
+
+        resData = {
+            "resCode": 0, # 非0即错误 1
+            "data": data,# 数据位置，一般为数组
+            "message": '搜索结果',
+            'company_type': company_type
+        }
+        return jsonify(resData)
+    else:
+        resData = {
+            "resCode": 1, # 非0即错误 1
+            "data": [],# 数据位置，一般为数组
+            "message": '请求方法错误'
+        }
+        return jsonify(resData)
+
 if __name__ == '__main__':
     # print(app.url_map)
     # http_server = WSGIServer(('127.0.0.1', int(5000)), app)

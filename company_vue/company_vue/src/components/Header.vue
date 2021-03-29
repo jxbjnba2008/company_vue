@@ -15,6 +15,7 @@
             <b-navbar-brand class="alsp1" href="/info_more/rongzi">创投资讯</b-navbar-brand>
             <b-navbar-brand class="alsp1" href="/info_more/hangye">行业分析</b-navbar-brand>
             <b-navbar-brand class="alsp1" href="/info_more/death">死亡公司</b-navbar-brand>
+            <b-navbar-brand class="alsp1" href="/map/all">数据地图</b-navbar-brand>
           </div>
 <!--          <b-navbar-brand class="move"></b-navbar-brand>-->
           <ul  class="navbar-nav ml-auto container1">
@@ -39,7 +40,7 @@
    import { stripscript } from "../apis/validate.js";
 
 export default {
-    name:"Header",
+    name: "Header",
     data() {
         return {
             now_url: this.$route.path,

@@ -215,8 +215,19 @@ class company(object):
         else:
             return None
 
+    def get_map_detail(self, map_type, key):
+        """
+            获取地图数据
+        """
+        return '高新技术企业', [{'name': '香港', 'value': 100}, {'name': '澳门', 'value': 10}, {'name': '上海', 'value': 12669}, {'name': '云南', 'value': 1459}, {'name': '内蒙古', 'value': 897}, {'name': '北京', 'value': 26244}, {'name': '吉林', 'value': 1675}, {'name': '四川', 'value': 5640}, {'name': '天津', 'value': 6051}, {'name': '宁夏', 'value': 206}, {'name': '安徽', 'value': 6569}, {'name': '山东', 'value': 11445}, {'name': '山西', 'value': 2359}, {'name': '广东', 'value': 50224}, {'name': '广西', 'value': 2360}, {'name': '新疆', 'value': 661}, {'name': '江苏', 'value': 24972}, {'name': '江西', 'value': 5101}, {'name': '河北', 'value': 7669}, {'name': '河南', 'value': 4750}, {'name': '浙江', 'value': 16279}, {'name': '海南', 'value': 719}, {'name': '湖北', 'value': 6790}, {'name': '湖南', 'value': 6235}, {'name': '甘肃', 'value': 1029}, {'name': '福建', 'value': 4765}, {'name': '西藏', 'value': 68}, {'name': '贵州', 'value': 1603}, {'name': '辽宁', 'value': 5091}, {'name': '重庆', 'value': 3117}, {'name': '陕西', 'value': 4309}, {'name': '青海', 'value': 183}, {'name': '黑龙江', 'value': 1212}]
 
 if __name__ == '__main__':
     company = company()
     # books.get_books_page('xuanhuan', 0, 10)
-    company.search_infos_by_key('蚂蚁')
+    # company.search_infos_by_key('蚂蚁')
+    sql = "SELECT area as name, count(company_name) as value from jx_qcc_base where company_type='高新技术企业' GROUP BY area"
+    rows = company.db.query(sql)
+    data = []
+    for row in rows:
+        data.append(row.as_dict())
+    print(data)

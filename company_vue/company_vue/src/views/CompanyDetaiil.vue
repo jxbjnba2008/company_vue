@@ -231,11 +231,11 @@
     }
 
     .company-box {
-        margin-left: 228px;
+        margin-left: 21%;
     }
     .new-box-p {
         padding: 20px;
-        width: 930px;
+        width: 101%;
     }
     .new-box {
         background: #ffffff;

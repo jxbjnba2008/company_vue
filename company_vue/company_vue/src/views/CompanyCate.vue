@@ -187,16 +187,16 @@
       font-size: 15px;
   }
   .elib-main {
-      width: 850px;
-      float: right;
-      margin-left: 16px;
+      width: 72%;
+      float: left;
+      margin-left: 3.5%;
   }
   .elib-content {
       background: #ffffff;
   }
 
   .panel {
-      border-radius: 10px;
+      border-radius: 6px;
       box-shadow: none;
       border: solid 1px #eeeeee;
       width: 110%;

@@ -54,7 +54,7 @@
       </div>
       <Right />
   </div>
-  <div style="margin-top: 1350px"></div>
+  <div style="margin-top: 60%"></div>
   <Footer />
 
   </div>
