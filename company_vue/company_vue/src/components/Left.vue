@@ -1,6 +1,5 @@
 <template>
   <div style="background-color: #f6f6f6;">
-  <div>
       <div class="elib-left">
           <div class="nuser-left">
             <div class="navi-wrap">
@@ -29,7 +28,6 @@
       </div>
   </div>
 
-  </div>
 </template>
 
 <script>

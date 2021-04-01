@@ -219,13 +219,49 @@ class company(object):
         """
             获取地图数据
         """
-        return '高新技术企业', [{'name': '香港', 'value': 100}, {'name': '澳门', 'value': 10}, {'name': '上海', 'value': 12669}, {'name': '云南', 'value': 1459}, {'name': '内蒙古', 'value': 897}, {'name': '北京', 'value': 26244}, {'name': '吉林', 'value': 1675}, {'name': '四川', 'value': 5640}, {'name': '天津', 'value': 6051}, {'name': '宁夏', 'value': 206}, {'name': '安徽', 'value': 6569}, {'name': '山东', 'value': 11445}, {'name': '山西', 'value': 2359}, {'name': '广东', 'value': 50224}, {'name': '广西', 'value': 2360}, {'name': '新疆', 'value': 661}, {'name': '江苏', 'value': 24972}, {'name': '江西', 'value': 5101}, {'name': '河北', 'value': 7669}, {'name': '河南', 'value': 4750}, {'name': '浙江', 'value': 16279}, {'name': '海南', 'value': 719}, {'name': '湖北', 'value': 6790}, {'name': '湖南', 'value': 6235}, {'name': '甘肃', 'value': 1029}, {'name': '福建', 'value': 4765}, {'name': '西藏', 'value': 68}, {'name': '贵州', 'value': 1603}, {'name': '辽宁', 'value': 5091}, {'name': '重庆', 'value': 3117}, {'name': '陕西', 'value': 4309}, {'name': '青海', 'value': 183}, {'name': '黑龙江', 'value': 1212}]
+        data = map_dict.get(map_type)
+        if map_type == 'all':
+            return '总企业数', data
+        if map_type == 'gaoxin':
+            return '高新技术企业', data
+        if map_type == 'kj_xing':
+            return '科技型中小企业', data
+        if map_type == 'js_xianjin':
+            return '技术先进型服务企业', data
+        if map_type == 'dujiaoshou':
+            return '独角兽企业', data
+        if map_type == 'dengling':
+            return '瞪羚企业', data
+        if map_type == 'chuangxin':
+            return '创新型企业', data
+        if map_type == 'kj_xiao':
+            return '科技小巨人企业', data
+        if map_type == 'zhaunjing':
+            return '专精特新企业', data
+        if map_type == 'chuying':
+            return '雏鹰企业', data
+        if map_type == 'js_qiye':
+            return '企业技术中心', data
+        if map_type == 'fuhuaqi':
+            return '科技企业孵化器', data
+        if map_type == 'js_chuangxin':
+            return '技术创新示范企业', data
+        if map_type == 'zhongchuang':
+            return '众创空间', data
+        if map_type == 'yinxing':
+            return '隐形冠军企业', data
+        if map_type == 'minying':
+            return '民营科技企业', data
+        if map_type == 'niuling':
+            return '牛羚企业', data
+        if map_type == 'zhaunjing_xiao':
+            return '专精特新小巨人企业', data
 
 if __name__ == '__main__':
     company = company()
     # books.get_books_page('xuanhuan', 0, 10)
     # company.search_infos_by_key('蚂蚁')
-    sql = "SELECT area as name, count(company_name) as value from jx_qcc_base where company_type='高新技术企业' GROUP BY area"
+    sql = "SELECT area as name, count(company_name) as value from jx_qcc_base where company_type='民营科技企业' GROUP BY area"
     rows = company.db.query(sql)
     data = []
     for row in rows:

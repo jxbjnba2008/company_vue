@@ -4,7 +4,7 @@
 
             <div class="eo-title-box fz18">
               <span class="span-line">快 讯</span>
-                <a href="/info_more/info" style="margin-left: 58%;color: #94000c;font-size: 14px">更多></a>
+                <a href="/info_more/info" style="margin-left: 65%;color: #94000c;font-size: 14px">More ></a>
             </div>
             <div class="ranking_wrap ranking_roll">
             <vue-seamless-scroll :data="items.InfoItems" class="seamless-warp" :class-option="classOption">
@@ -110,7 +110,7 @@
     overflow: hidden;
 }
 .eo-home-right {
-  width: 19.5%;
+  width: 25%;
   margin-left: auto;
 }
 .eo-briefing {
@@ -139,11 +139,11 @@
     position: absolute;
     top: 26px;
     left: 0;
-    width: 22%;
-    height: 5px;
+    width: 16%;
+    height: 6px;
     border-radius: 4px;
-    background: #d25720;
-    color: #f04b00;
+    background: #bb1c2c;
+    //color: #f04b00;
 }
 
 .eo-briefing .brief-lists-scroll {

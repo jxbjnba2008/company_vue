@@ -26,7 +26,7 @@
 <script>
     import Header from "../components/Header.vue";
     import Footer from "../components/Footer.vue";
-    import { GetHangyeDetail } from "@/apis/read.js";
+    import { GetHangyeDetail } from "../apis/read.js";
 
     export default {
       name: "HangyeDetail.vue",

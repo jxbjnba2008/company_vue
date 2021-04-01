@@ -106,7 +106,7 @@
 <script>
     import Header from "../components/Header.vue";
     import Footer from "../components/Footer.vue";
-    import {GetPagePost} from "@/apis/read.js";
+    import {GetPagePost} from "../apis/read.js";
     import {formatter} from "../utils/date.js";
 
     export default {
@@ -173,8 +173,7 @@
     margin-top: 15px;
 }
 .row {
-    margin-right: -15px;
-    margin-left: 80px;
+    margin-left: 5%;
 }
 .col-md-12 {
     width: 100%;

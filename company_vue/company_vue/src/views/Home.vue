@@ -2,13 +2,15 @@
   <div style="background-color: #f6f6f6;" v-title data-title="首页 Galaxy Information">
   <Header />
   <div class="container c-t-cd">
+    <div style="margin-left: -3%">
       <Left />
+    </div>
       <div class="comp-main">
         <div class="row c-d">
           <section class="col-xs-6">
             <ul class="panel comp-panel">
               <div class="panel-header b-b">
-                <a class="more right-info" href="/info_more/shangshi">查看更多&gt;</a>
+                <a class="more right-info" href="/info_more/shangshi">More ></a>
                 <h4 style="font-weight: bold">上市信息</h4>
               </div>
               <ul class="list-group">
@@ -32,7 +34,7 @@
           <section class="col-xs-6">
             <ul class="panel comp-panel">
               <div class="panel-header b-b">
-                <a class="more right-info" href="/info_more/rongzi">查看更多&gt;</a>
+                <a class="more right-info" href="/info_more/rongzi">More ></a>
                 <h4 style="font-weight: bold">创投资讯</h4>
               </div>
               <ul class="list-group">
@@ -52,7 +54,10 @@
           </section>
         </div>
       </div>
+    <div style="margin-right: -4%">
       <Right />
+    </div>
+
   </div>
   <div style="margin-top: 60%"></div>
   <Footer />
@@ -65,7 +70,7 @@
     import Footer from "../components/Footer.vue";
     import {GetInfoPost} from "../apis/read";
     import Left from "../components/Left.vue";
-    import Right from "../components/Right.vue"
+    import Right from "../components/Right.vue";
     import {formatter} from "../utils/date.js";
 
     export default {

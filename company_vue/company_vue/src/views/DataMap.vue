@@ -7,11 +7,25 @@
       <div class="hello">
         <div class="drop-box">
           <b-dropdown id="dropdown" text="数 据 地 图 企 业 标 签" variant="light" class="m-2">
+            <b-dropdown-item href="/map/all"><span style="font-size: 15px; font-weight: bold">科技型企业总数</span></b-dropdown-item>
+            <b-dropdown-divider></b-dropdown-divider>
             <b-dropdown-item href="/map/gaoxin"><span class="a_text">高新技术企业</span></b-dropdown-item>
             <b-dropdown-item href="/map/kj_xing"><span class="a_text">科技型中小企业</span></b-dropdown-item>
             <b-dropdown-item href="/map/js_xianjin"><span class="a_text">技术先进型服务企业</span></b-dropdown-item>
-            <!--          <b-dropdown-divider></b-dropdown-divider>-->
-
+            <b-dropdown-item href="/map/dujiaoshou"><span class="a_text">独角兽企业</span></b-dropdown-item>
+            <b-dropdown-item href="/map/dengling"><span class="a_text">瞪羚企业</span></b-dropdown-item>
+            <b-dropdown-item href="/map/chuangxin"><span class="a_text">创新型企业</span></b-dropdown-item>
+            <b-dropdown-item href="/map/kj_xiao"><span class="a_text">科技小巨人企业</span></b-dropdown-item>
+            <b-dropdown-item href="/map/zhaunjing"><span class="a_text">专精特新企业</span></b-dropdown-item>
+            <b-dropdown-item href="/map/chuying"><span class="a_text">雏鹰企业</span></b-dropdown-item>
+            <b-dropdown-item href="/map/js_qiye"><span class="a_text">企业技术中心</span></b-dropdown-item>
+            <b-dropdown-item href="/map/fuhuaqi"><span class="a_text">科技企业孵化器</span></b-dropdown-item>
+            <b-dropdown-item href="/map/js_chuangxin"><span class="a_text">技术创新示范企业</span></b-dropdown-item>
+            <b-dropdown-item href="/map/zhongchuang"><span class="a_text">众创空间</span></b-dropdown-item>
+            <b-dropdown-item href="/map/yinxing"><span class="a_text">隐形冠军企业</span></b-dropdown-item>
+            <b-dropdown-item href="/map/minying"><span class="a_text">民营科技企业</span></b-dropdown-item>
+            <b-dropdown-item href="/map/niuling"><span class="a_text">牛羚企业</span></b-dropdown-item>
+            <b-dropdown-item href="/map/zhaunjing_xiao"><span class="a_text">专精特新小巨人企业</span></b-dropdown-item>
           </b-dropdown>
         </div>
         <!-- 初始化echarts需要个有宽高的盒子 -->
@@ -56,8 +70,8 @@
           fontSize:12
         },
         itemStyle:{      // 地图板块的颜色和边框---灰色，各个省界线
-          areaColor:'#cd5c5c',
-          borderColor:'#d78865'
+          areaColor:'#e3e3e3',
+          borderColor:'#5783a0'
         },
         roam:true,
         zoom: 1,// 控制地图的放大和缩小
@@ -81,11 +95,14 @@
         left: "5%",
         // splitNumber:4
         pieces:[           // 分段
-          {min:10000},
+          {min:30000},
+          {min:20000,max:29999},
+          {min:10000,max:19999},
           {min:1000,max:9999},
           {min:100,max:999},
-          {min:10,max:99},
-          {min:1,max:9}
+          {min:20,max:99},
+          {min:5,max:20},
+          {min:0,max:5}
         ],
         // align:'right',// 默认left
         // orient:'horizontal' 默认竖直
@@ -94,13 +111,13 @@
         // textStyle:{}
         inRange:{
           symbol:'rect',
-          color:['#ffa997','#ac1313']   //   浅红~~深红色
+          color:['#f6d3d3','#cb3232']   //   浅红~~深红色
         },
         itemWidth:20,
         itemHeight:10
       }],
 
-//-------------------------------------------------------------------
+// -------------------------------------------------------------------
       tooltip:{
         trigger:'item'
       },
@@ -149,18 +166,18 @@
       },
       methods:{
 
-        getData(){
-          jsonp('https://interface.sina.cn/news/wap/fymap2020_data.d.json?_=1580892522427',{},(err,data)=>{
-            if(!err){             // 代表请求数据成功
-              console.log(data);
-              let list = data.data.list.map(item=>({name:item.name,value:item.value}))
-              console.log(list);
-              option.series[0].data = list;
-              this.mychart.setOption(option);
-              // 这行代码能执行的前提是 DOM已经渲染完成，只有DOM渲染完成才能够执行 echarts初始化
-            }
-          })
-        }
+        // getData(){
+        //   jsonp('https://interface.sina.cn/news/wap/fymap2020_data.d.json?_=1580892522427',{},(err,data)=>{
+        //     if(!err){             // 代表请求数据成功
+        //       console.log(data);
+        //       let list = data.data.list.map(item=>({name:item.name,value:item.value}))
+        //       console.log(list);
+        //       option.series[0].data = list;
+        //       this.mychart.setOption(option);
+        //       // 这行代码能执行的前提是 DOM已经渲染完成，只有DOM渲染完成才能够执行 echarts初始化
+        //     }
+        //   })
+        // }
       }
     }
 

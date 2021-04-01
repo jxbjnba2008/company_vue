@@ -29,11 +29,12 @@
                       <div class="desc">
                           <a target="_blank">{{item.desc1}}</a>
                           <span>{{item.desc2}}</span>
-                          <span class="time">{{item.time}}</span>
+                          <span class="time">{{formatter(item.time, 'yyyy-MM-dd')}}</span>
                       </div>
                   </li>
                </ul>
             </div>
+
             <div class="center" style="margin: auto; margin-top: 60px">
                   <ul class="pagination">
                       <li @click="fisrtPage()">
@@ -61,6 +62,7 @@
                   </ul>
               </div>
           </div>
+
       </div>
       <Footer />
     </div>
@@ -70,6 +72,7 @@
     import Header from "../components/Header.vue";
     import Footer from "../components/Footer.vue";
     import {GetPagePost} from "../apis/read.js";
+    import {formatter} from "../utils/date.js";
 
     export default {
       name: "IpoInfoMore.vue",
@@ -79,6 +82,7 @@
         },
         data() {
             return {
+                formatter,
                 url: this.$route.path,
                 pageNo: 1, //当前页码
                 pageTotal: 100, //总页数
@@ -134,8 +138,7 @@
     margin-top: 15px;
 }
 .row {
-    margin-right: -15px;
-    margin-left: 80px;
+    margin-left: 5%;
 }
 .col-md-12 {
     width: 100%;
@@ -161,7 +164,7 @@
     float: left;
     padding-left: 15px;
     padding-right: 7px;
-    width: 936px;
+    width: 90%;
     margin-left: 10px;
 }
 .list-group {

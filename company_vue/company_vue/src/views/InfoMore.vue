@@ -65,7 +65,7 @@
 <script>
     import Header from "../components/Header.vue";
     import Footer from "../components/Footer.vue";
-    import {GetPagePost} from "@/apis/read.js";
+    import {GetPagePost} from "../apis/read.js";
     import {formatter} from "../utils/date.js";
 
     export default {
