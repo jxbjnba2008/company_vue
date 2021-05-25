@@ -6,16 +6,46 @@
         <div class="company-box">
             <div class="new-box new-box-p">
                 <div class="titlebar">
-                    <button onclick="history.back();" class="button">
-
-                    </button>
-                    <h2 class="title-info"> 企业工商信息 </h2>
+                    <button onclick="history.back();" class="button"></button>
+                    <!-- <h2 class="title-info"> 企业工商信息 </h2> -->
                 </div>
+
+                <div class="content-title">
+                  <h2 class="name">{{url.replace('/company_detail/', '')}}</h2>
+                </div>
+
+                <div class="tags-list">
+                  <span class="zx-ent-tag blue">
+                      {{items.baseInfo['company_status']}}
+                  </span>
+                  <span class="zx-ent-tag blue">
+                      {{items.baseInfo['industry']}}
+                  </span>
+                  <span class="zx-ent-tag blue">
+                      {{items.type.join(' 、')}}
+                  </span>
+                </div>
+
+                 <div class="content-info">
+                   <div class="content-info-child">
+                     <p style="width: 40%;">电话：<span>{{items.baseInfo['tel']}}</span></p>
+                     <p>邮箱：
+                     <Unfold :data="items.baseInfo['email'].replace(new RegExp(',','gm'),'、')" :maxLen="30" v-if="items.baseInfo['email'] !== undefined && items.baseInfo['email'].length>0"></Unfold>
+                     </p>
+                   </div>
+                   <div class="content-info-child">
+                     <p>网址：<span><a target="_blank" :href="items.baseInfo['source_web'].includes('http')?items.baseInfo['source_web']:'http://' + items.baseInfo['source_web']">{{items.baseInfo['source_web']}}</a></span></p>
+                   </div>
+                   <div class="content-info-child">
+                     <p>地址：<span v-if="items.baseInfo['source_address'] !== undefined && items.baseInfo['source_address'].length>0">{{items.baseInfo['source_address'].replace(new RegExp('同地址企业','gm'),'')}}</span></p>
+                   </div>
+                 </div>
+
                 <section class="section-box">
                     <div class="tcaption">
-                        <span class="title">{{url.replace('/company_detail/', '')}}</span>
-                        <span style="color: #898989">{{'（ ' + items.type.join(' 、') + ' ）'}}</span>
-                        <span style="font-size: large">-> </span>
+                        <!-- <span class="title">{{url.replace('/company_detail/', '')}}</span> -->
+                        <!-- <span style="color: #898989">{{'（ ' + items.type.join(' 、') + ' ）'}}</span> -->
+                        <!-- <span style="font-size: large">-> </span> -->
                         <span class="el-title">基本信息</span>
                         <table class="newtable">
                             <tbody>
@@ -73,15 +103,18 @@
                                   <td class="ta" colspan="3">{{items.baseInfo['english_name']}}</td>
                                 </tr>
                                 <tr>
-                                  <td class="tb">企业地址</td>
+                                  <td class="tb">注册地址</td>
                                   <td colspan="6">
                                     {{items.baseInfo['source_address']}}
                                   </td>
                                 </tr>
                                 <tr>
                                   <td class="tb">经营范围</td>
-                                  <td class="" colspan="6">
-                                  {{items.baseInfo['business_scope']}}
+
+                                  <td colspan="6">
+                                    <Unfold :data="items.baseInfo['business_scope'].replace(new RegExp(':','gm'),'：').replace(new RegExp(';','gm'),'；').replace(new RegExp(',','gm'),'，')" v-if="items.baseInfo['business_scope'] !== undefined && items.baseInfo['business_scope'].length>0"></Unfold>
+                                    <!-- {{items.baseInfo['business_scope']}} -->
+
                                   </td>
                                 </tr>
                             </tbody>
@@ -90,9 +123,9 @@
                 </section>
                 <section class="section-box">
                     <div class="tcaption">
-                        <span class="title">{{url.replace('/company_detail/', '')}}</span>
-                        <span style="color: #898989">{{'（ ' + items.type.join(' 、') + ' ）'}}</span>
-                        <span style="font-size: large">-> </span>
+                        <!-- <span class="title">{{url.replace('/company_detail/', '')}}</span> -->
+                        <!-- <span style="color: #898989">{{'（ ' + items.type.join(' 、') + ' ）'}}</span> -->
+                        <!-- <span style="font-size: large">-> </span> -->
                         <span class="el-title">股东信息</span>
                         <table class="newtable">
                             <tbody>
@@ -120,9 +153,9 @@
                 </section>
                 <section class="section-box">
                     <div class="tcaption">
-                        <span class="title">{{url.replace('/company_detail/', '')}}</span>
-                        <span style="color: #898989">{{'（ ' + items.type.join(' 、') + ' ）'}}</span>
-                        <span style="font-size: large">-> </span>
+                        <!-- <span class="title">{{url.replace('/company_detail/', '')}}</span> -->
+                        <!-- <span style="color: #898989">{{'（ ' + items.type.join(' 、') + ' ）'}}</span> -->
+                        <!-- <span style="font-size: large">-> </span> -->
                         <span class="el-title">变更信息</span>
                         <table class="newtable">
                             <tbody>
@@ -134,18 +167,20 @@
                                   <th width="190">变更后</th>
 
                                 </tr>
-                                <tr v-for="(item,index) in items.changeInfo" :key="index">
+                                <tr v-for="(item,index) in items.changeInfo" :key="index" v-if="items.changeInfo !== undefined && items.changeInfo.length>0">
                                   <td class="tx">{{index+1}}</td>
                                   <td class="tx" style="padding: 10px 10px 10px 10px;">{{item.change_name}}</td>
                                   <td class="tx">{{item.change_date}}</td>
                                   <td class="tx">
-                                    <div style="padding: 0 10px 1px 10px;">
-                                      {{item.change_befor.replaceAll(':', '：').replaceAll(';', '；').replaceAll(',', '，')}}
+                                    <div style="padding: 0 10px 1px 10px; color: #747474">
+                                      <Unfold :data="item.change_befor.replace(new RegExp(':','gm'),'：').replace(new RegExp(';','gm'),'；').replace(new RegExp(',','gm'),'，')" :maxLen="num"></Unfold>
+                                      <!-- {{item.change_befor.replace(new RegExp(":","gm"),"：").replace(new RegExp(";","gm"),"；").replace(new RegExp(",","gm"),"，")}} -->
                                     </div>
                                   </td>
                                   <td class="tx">
                                     <div style="padding: 0 10px 1px 10px; color: #9f1717">
-                                      {{item.change_after.replaceAll(':', '：').replaceAll(';', '；').replaceAll(',', '，')}}
+                                      <Unfold :data="item.change_after.replace(new RegExp(':','gm'),'：').replace(new RegExp(';','gm'),'；').replace(new RegExp(',','gm'),'，')" :maxLen="num"></Unfold>
+                                      <!-- {{item.change_after.replace(new RegExp(":","gm"),"：").replace(new RegExp(";","gm"),"；").replace(new RegExp(",","gm"),"，")}} -->
                                     </div>
                                   </td>
 
@@ -166,6 +201,7 @@
     import Header from "../components/Header.vue";
     import Footer from "../components/Footer.vue";
     import Left from "../components/Left.vue";
+    import Unfold from "../components/Spread.vue";
     import { GetInfoPost } from "../apis/read.js";
 
     export default {
@@ -173,10 +209,12 @@
       components: {
         Left,
         Header,
-        Footer
+        Footer,
+        Unfold,
       },
       data() {
         return {
+          num: 50,
           'url': this.$route.path,
           baseParams: {
               url: this.$route.path,
@@ -198,6 +236,7 @@
           }
         }
       },
+
       created () {
         console.log('url: ', this.$route.path)
         GetInfoPost(this.baseParams).then(resp =>{
@@ -216,7 +255,8 @@
             console.log("In partnerInfo resp.data = ", resp.data.data);
             this.items.partnerInfo = resp.data.data
         });
-    }
+
+    },
 
     }
 </script>
@@ -235,7 +275,7 @@
     }
     .new-box-p {
         padding: 20px;
-        width: 101%;
+        width: 105%;
     }
     .new-box {
         background: #ffffff;
@@ -255,6 +295,70 @@
         font-weight: 700;
         display: inline-block;
     }
+
+    .content-title {
+        width: 100%;
+        height: auto;
+        float: left;
+        margin-top: 10px;
+    }
+
+    .name {
+        font-size: 22px;
+        line-height: 30px;
+        float: left;
+        max-width: 620px;
+        font-weight: bold;
+    }
+
+    .tags-list {
+        float: left;
+        /* max-width: 630px; */
+    }
+
+    .tags-list .zx-ent-tag {
+        border-radius: 3px;
+        float: left;
+        padding: 1px 6px;
+        font-size: 12px;
+        line-height: 16px;
+        margin-top: 12px;
+        /* border: 1px solid #bd3134; */
+        background: #fff0f0;
+    }
+
+    .blue {
+        color: #bd3134;
+    }
+
+    .tags-list .zx-ent-tag+.zx-ent-tag {
+        margin-left: 8px;
+    }
+
+    .content-info {
+        width: 100%;
+        float: left;
+        padding: 16px 14px 6px;
+        box-sizing: border-box;
+        background: #fbf5f5;
+        margin-top: 16px;
+    }
+
+    .content-info-child {
+        overflow: hidden;
+        line-height: 14px;
+    }
+
+    .content-info-child p {
+        float: left;
+        font-size: 14px;
+        line-height: 15px;
+        color: #666;
+    }
+    .content-info-child span {
+        color: #151515;
+    }
+
     .button {
       background-color: Transparent;
       outline: none;
@@ -273,8 +377,9 @@
 
     .section-box {
         border-radius: 0;
-        margin-bottom: 20px;
         background-color: #ffffff;
+        float: left;
+        width: 100%;
     }
     .tcaption {
         margin-bottom: 10px;
@@ -290,17 +395,18 @@
         line-height: 1.8;
     }
     .tcaption .el-title {
-      color: #e24848;
+      color: #161616;
       font-family: 楷体,serif;
       font-weight: bold;
+      font-size: 18px;
     }
     .newtable {
         width: 100%;
-        margin: 0 auto 20px;
+        margin: 5px auto 0px;
     }
 
     .newtable .tb {
-        background: #faeded;
+        background: #fbf5f5;
         text-align: center;
     }
     .newtable .ta {

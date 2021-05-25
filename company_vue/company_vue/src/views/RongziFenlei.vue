@@ -27,7 +27,7 @@
                       <div class="desc">
                           <div>
                               <a style="color: #535863; text-decoration: none;cursor:default">{{item.des}}</a>
-                              <a rel="noopener noreferrer" :href="item.url" class="primary-text">查看详情</a>
+                              <a rel="noopener noreferrer" :href="item.url" class="primary-text">新闻链接</a>
                           </div>
                           <span style="float: left; margin-top: 10px; color: #94000c">{{item.event_type}}</span>
                           <span class="time" style="margin-top: 10px;">{{formatter(item.event_time, 'yyyy-MM-dd')}}</span>
@@ -241,7 +241,7 @@
         text-decoration: none;
         border-radius: 5px;
         transition: background-color .3s;
-        border: 1px solid #94000c;
+        border: 1px solid #cccccc;
         margin: 0 4px;
         font-size: 14px;
     }
@@ -253,7 +253,7 @@
     }
 
     ul.pagination li a:hover:not(.active) {
-        background-color: #c6646d;
+        background-color: #f8cfd0;
     }
     div.center {text-align: center;}
 </style>

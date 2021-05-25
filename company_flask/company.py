@@ -28,6 +28,8 @@ class company(object):
             sql = 'select * from qcc_ipodynamics order by time desc limit 5'
         elif key == 'rongzi':
             sql = "select * from itjuzi_touzi where event_type='投资事件' order by event_time desc limit 5"
+        elif key == 'hangye':
+            sql = "SELECT * from iyiou_analysis order by time desc limit 8"
         else:
             sql = 'select * from iyiou_briefing order by time desc limit 10'
         rows = self.db.query(sql)
@@ -59,8 +61,8 @@ class company(object):
         emp = {
             'company_type': company_type,
         }
-        sql = "SELECT * from qcc_keji_company where company_type=:company_type limit {},{} ".format((pageNo-1)*pageSize, pageSize)
-        sql_num = "SELECT count(*) from qcc_keji_company where company_type=:company_type"
+        sql = "SELECT * from jx_qcc_test where company_type=:company_type limit {},{} ".format((pageNo-1)*pageSize, pageSize)
+        sql_num = "SELECT count(*) from jx_qcc_test where company_type=:company_type"
 
         rows = self.db.query(sql, **emp)
         num = self.db.query(sql_num, **emp)
@@ -197,7 +199,7 @@ class company(object):
             'company_name': company,
         }
         if key == 'base':
-            sql = "SELECT * from jx_qcc_base where company_name=:company_name"
+            sql = "SELECT * from jx_qcc_test where company_name=:company_name"
         elif key == 'change':
             sql = "SELECT * from jx_qcc_change where company_name=:company_name"
         else:

@@ -52,7 +52,7 @@ module.exports = {
     });
   },
   // 生产环境是否生成 sourceMap 文件
-  productionSourceMap: true,
+  productionSourceMap: false,
   css: {
     // 是否使用css分离插件 ExtractTextPlugin
     extract: true,

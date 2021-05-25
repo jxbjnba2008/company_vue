@@ -42,12 +42,15 @@
     // const echarts = require('echarts');
     import * as echarts from 'echarts/lib/echarts';
     import 'echarts/lib/chart/map';
-    import 'echarts/map/js/china.js';
+    import China from 'echarts/map/js/china.js';
     import jsonp from 'jsonp';
     import Header from "../components/Header";
     import Footer from "../components/Footer";
     import {GetInfoPost} from "../apis/read";
     import {formatter} from "../utils/date";
+
+    // 注册地图
+    echarts.registerMap('China', China)
 
     const option = {
       title:{
@@ -164,7 +167,7 @@
         this.mychart = echarts.init(this.$refs.mapbox);
         this.mychart.setOption(option)
       },
-      methods:{
+      // methods:{
 
         // getData(){
         //   jsonp('https://interface.sina.cn/news/wap/fymap2020_data.d.json?_=1580892522427',{},(err,data)=>{
@@ -178,7 +181,7 @@
         //     }
         //   })
         // }
-      }
+      // }
     }
 
 </script>

@@ -4,7 +4,7 @@
 
             <div class="eo-title-box fz18">
               <span class="span-line">快 讯</span>
-                <a href="/info_more/info" style="margin-left: 65%;color: #94000c;font-size: 14px">More ></a>
+                <a href="/info_more/info" style="margin-left: 63%;color: #94000c;font-size: 14px">More ></a>
             </div>
             <div class="ranking_wrap ranking_roll">
             <vue-seamless-scroll :data="items.InfoItems" class="seamless-warp" :class-option="classOption">
@@ -106,12 +106,13 @@
 
 <style scoped lang="scss">
 .ranking_roll {
-    max-height: 600px;
+    max-height: 710px;
     overflow: hidden;
 }
 .eo-home-right {
-  width: 25%;
-  margin-left: auto;
+    width: 25%;
+    padding-left: 0.5vw;
+    float: left;
 }
 .eo-briefing {
     padding: .6rem .6rem 1rem;
@@ -139,7 +140,7 @@
     position: absolute;
     top: 26px;
     left: 0;
-    width: 16%;
+    width: 17%;
     height: 6px;
     border-radius: 4px;
     background: #bb1c2c;

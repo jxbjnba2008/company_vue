@@ -1,39 +1,37 @@
 <template>
-  <header class="box-shadow">
-    <div>
-      <b-navbar toggleable="lg" type="light" variant="light">
-<!--        <b-navbar-brand><img src="https://www.qcc.com/material/theme/chacha/cms/v2/images/logo4.png" alt="" height="50" width="80"></b-navbar-brand>-->
-<!--        <b-navbar-brand class="container"></b-navbar-brand>-->
+  <div class="box-shadow">
 
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-brand class="alsp" href="/">
-            <p style="margin-bottom: -10px;">GalaxyInfor</p>
-            <em style="font-size: 1px;color: #9d6b6b">More Than Data !</em>
-          </b-navbar-brand>
-          <div style="margin-left: 6.5%">
-            <b-navbar-brand class="alsp1" href="/info_more/shangshi">上市信息</b-navbar-brand>
-            <b-navbar-brand class="alsp1" href="/info_more/rongzi">创投资讯</b-navbar-brand>
-            <b-navbar-brand class="alsp1" href="/info_more/hangye">行业分析</b-navbar-brand>
-            <b-navbar-brand class="alsp1" href="/info_more/death">死亡公司</b-navbar-brand>
-            <b-navbar-brand class="alsp1" href="/map/all">数据地图</b-navbar-brand>
+        <div id="nav-collapse" style="display: flex;">
+          <div class="alsp">
+            <p class="logo"><a href="/" style="color: #94000c;text-decoration: none">星空资讯</a></p>
+            <em class="logo-text">Galaxy Info</em>
           </div>
-<!--          <b-navbar-brand class="move"></b-navbar-brand>-->
-          <ul  class="navbar-nav ml-auto container1">
-            <li  class="form-inline">
-              <div  class="form-inline" style="width:470px;">
-                <label>
-                  <input v-model="search.key" type="text" style="width:200px;height: 35px;border-radius: 15px;" placeholder="请输入企业名称" class="form-control headerKey active" >
-                </label>
-                <button @click="onSearch" type="submit" style="margin-left: 15px;" class="btn">
-                  <span>开始查询</span>
-                </button>
-              </div>
-            </li>
-          </ul>
-        </b-collapse>
-      </b-navbar>
+          <div style="position: relative; left: 25vw;display: flex;">
+            <div class="alsp1"><a href="/info_more/shangshi" style="color: #a0323a;text-decoration: none">上市信息</a></div>
+            <div class="alsp1"><a href="/info_more/rongzi" style="color: #a0323a;text-decoration: none">创投资讯</a></div>
+            <div class="alsp1"><a href="/info_more/hangye" style="color: #a0323a;text-decoration: none">行业分析</a></div>
+            <div class="alsp1"><a href="/info_more/death" style="color: #a0323a;text-decoration: none">死亡公司</a></div>
+            <div class="alsp1"><a href="/map/all" style="color: #a0323a;text-decoration: none">数据地图</a></div>
+          </div>
+
+          <div style="position: relative; left: 28vw; margin-top: 0.6vw;">
+            <ul  class="navbar-nav">
+
+                <div class="form-inline">
+                  <label>
+                    <input v-model="search.key" type="text" style="width:15vw;height: 2vw;border-radius: 1vw;" placeholder="请输入企业名称" class="form-control" >
+                  </label>
+                  <button @click="onSearch" type="submit" style="margin-left: 1vw;" class="btn">
+                    <span>开始查询</span>
+                  </button>
+                </div>
+
+            </ul>
+          </div>
+
+      </div>
+
     </div>
-    </header>
 </template>
 
 <script>
@@ -69,28 +67,39 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped> // lang告诉解释其css符合什么编译器的语法; scoped：当前vue文件生效，没有scoped则全局生效
+<style lang="scss" scoped>
 .alsp {
     font-family: DFKai-SB,sans-serif;
     font-weight: bold;
-    color: #94000c;
-    margin-left: 16%;
+    margin-top: 0.6vw;
+    position: relative;
+    left: 19vw;
+}
+.logo {
+    font-family: DFKai-SB,sans-serif;
+    margin-bottom: -0.6vw;
+    font-size: 1.2vw;
+}
+.logo-text {
+    font-size: 0.66vw;
+    color: #9d6b6b;
 }
 .alsp1 {
     font-family: KaiTi,serif;
     font-weight: bold;
-    color: #a0323a;
-    margin-left: 1.2vw;
+    margin-left: 2vw;
+    // position: relative;
+    // left: 2vw;
     font-size: 1.2vw;
     transform: translate(-50%, -50%);
     transition: color .5s;
-    margin-top: 33px;
+    margin-top: 2vw;
 }
 .alsp1::before {
     content: "";
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -0.3vw;
     width: 0;
     height: 0.4vw;
     background: #b30707;
@@ -100,57 +109,17 @@ export default {
 .alsp1:hover::before {
     width: 4.9vw;
 }
-.move{
-    width: 81px;
-    border-top: 5px solid #a0323a;/*只需要将上边显示出来*/
-    border-radius: 3px;
-
-    position: absolute;
-    left: 356px;
-    top: 60px;
-    transition: left .1s ease-in-out 0.1s;/*包含四个过度属性：执行变换属性、执行时间、速率、延迟*/
-    -webkit-transition: left .2s ease-in-out 0.1s;/*chrome和safari*/
-    -moz-transition: left .2s ease-in-out 0.1s;/*firefox*/
-    -o-transition: left .2s ease-in-out 0.1s;/*opera*/
-}
-.alsp1:nth-child(1):hover~ .move{    /*li元素的父元素的第一个子元素，当鼠标停留其上时，move元素的left属性改变*/
-    left: 0px;
-}
-.alsp1:nth-child(2):hover~ .move{
-    left: 356px;
-}
-.alsp1:nth-child(3):hover~ .move{
-    left: 465px;
-}
-.alsp1:nth-child(4):hover~ .move{
-    left: 596px;
-}
-.alsp1:nth-child(5):hover~ .move{
-    left: 725px;
-}
-.alsp1:nth-child(6):hover~ .move{
-    left: 853px;
-}
 
 
 .btn {
-    background-color: #bf5860;
+    background-color: #94000c;
     border-color: #b57f82;
     color: #ffffff;
-    padding: 7px 10px;
-    font-size: 12px;
-    border-radius: 13px;
+    padding: 0.4vw 1vw;
+    font-size: 0.5vw;
+    border-radius: 0.8vw;
 }
-.container {
-    padding-right: 200px;
-    padding-left: 100px;
-    margin-right: auto;
-    margin-left: auto;
-}
-.container1 {
-    padding-left: 1px;
 
-}
 
 .box-shadow {
     box-shadow: 0 2px 2px rgba(0,0,0,0.05), 0 1px 0 rgba(0,0,0,0.05);

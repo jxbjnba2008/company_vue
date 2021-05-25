@@ -142,7 +142,7 @@
 }
 
 .elib-left {
-    width: 17%;
+    width: 20%;
     float: left;
 
 }
@@ -151,7 +151,7 @@
 //
 //}
 .nuser-left .navi-wrap {
-    width: 117%;
+    width: 100%;
     margin-left: auto;
 }
 
@@ -219,7 +219,7 @@
 .nuser-left .navi ul.nav li a {
   position: relative;
   display: block;
-  padding: 10px 70px 10px 20px;
+  padding: 10px 70px 8px 20px;
   font-weight: normal;
   text-transform: none;
   text-decoration: none;

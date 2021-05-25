@@ -247,7 +247,7 @@
         text-decoration: none;
         border-radius: 5px;
         transition: background-color .3s;
-        border: 1px solid #94000c;
+        border: 1px solid #cccccc;
         margin: 0 4px;
         font-size: 14px;
     }
@@ -259,7 +259,7 @@
     }
 
     ul.pagination li a:hover:not(.active) {
-        background-color: #c6646d;
+        background-color: #f8cfd0;
     }
     div.center {text-align: center;}
 </style>
