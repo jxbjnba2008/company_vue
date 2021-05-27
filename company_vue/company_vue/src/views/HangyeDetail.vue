@@ -64,10 +64,11 @@
 
 }
 h1 {
-    font-size: 36px;
+    font-size: 30px;
     color: #333;
     line-height: 50px;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
+    font-weight: bold;
 }
 .post-top-bar {
     padding-bottom: 8px;

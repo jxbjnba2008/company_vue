@@ -6,7 +6,7 @@
             <p class="logo"><a href="/" style="color: #94000c;text-decoration: none">星空资讯</a></p>
             <em class="logo-text">Galaxy Info</em>
           </div>
-          <div style="position: relative; left: 25vw;display: flex;">
+          <div style="position: relative; left: 20vw;display: flex;">
             <div class="alsp1"><a href="/info_more/shangshi" style="color: #a0323a;text-decoration: none">上市信息</a></div>
             <div class="alsp1"><a href="/info_more/rongzi" style="color: #a0323a;text-decoration: none">创投资讯</a></div>
             <div class="alsp1"><a href="/info_more/hangye" style="color: #a0323a;text-decoration: none">行业分析</a></div>
@@ -14,7 +14,7 @@
             <div class="alsp1"><a href="/map/all" style="color: #a0323a;text-decoration: none">数据地图</a></div>
           </div>
 
-          <div style="position: relative; left: 28vw; margin-top: 0.6vw;">
+          <div style="position: relative; left: 23vw; margin-top: 0.8vw;">
             <ul  class="navbar-nav">
 
                 <div class="form-inline">
@@ -73,7 +73,7 @@ export default {
     font-weight: bold;
     margin-top: 0.6vw;
     position: relative;
-    left: 19vw;
+    left: 14vw;
 }
 .logo {
     font-family: DFKai-SB,sans-serif;
@@ -87,7 +87,7 @@ export default {
 .alsp1 {
     font-family: KaiTi,serif;
     font-weight: bold;
-    margin-left: 2vw;
+    margin-left: 2.5vw;
     // position: relative;
     // left: 2vw;
     font-size: 1.2vw;

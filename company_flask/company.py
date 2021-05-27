@@ -29,7 +29,7 @@ class company(object):
         elif key == 'rongzi':
             sql = "select * from itjuzi_touzi where event_type='投资事件' order by event_time desc limit 5"
         elif key == 'hangye':
-            sql = "SELECT * from iyiou_analysis order by time desc limit 8"
+            sql = "SELECT * from iyiou_analysis order by time desc limit 14"
         else:
             sql = 'select * from iyiou_briefing order by time desc limit 10'
         rows = self.db.query(sql)

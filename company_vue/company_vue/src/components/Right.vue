@@ -1,18 +1,19 @@
 <template>
       <div class="eo-home-right">
-          <div class="eo-briefing m-b-32">
+          <div class="eo-briefing">
 
             <div class="eo-title-box fz18">
               <span class="span-line">快 讯</span>
-                <a href="/info_more/info" style="margin-left: 63%;color: #94000c;font-size: 14px">More ></a>
+                <a href="/info_more/info" style="margin-left: 55%;color: #94000c;font-size: 14px">More ></a>
             </div>
             <div class="ranking_wrap ranking_roll">
             <vue-seamless-scroll :data="items.InfoItems" class="seamless-warp" :class-option="classOption">
                 <ul v-for="(item,i) in items.InfoItems" :key="i" style="list-style: none;margin-left: -35px;margin-bottom:0">
                     <li class="eo-bottom-dashed">
-                        <a class="eo-line-clamp-2" :href="item.url" target="_blank">{{item.title}}</a>
+                        <a class="eo-line-clamp-2" :href="item.url" target="_blank" v-if="item.url !== undefined && item.url.length>0">{{item.title}}</a>
                         <span class="time">
-                          {{formatter(item.time, 'yyyy-MM-dd')}}
+                          <!-- {{formatter(item.time)}} -->
+                          {{getTimestamp(item.time)}}
                         </span>
                     </li>
                 </ul>
@@ -25,7 +26,8 @@
 <script>
     import {GetInfoPost} from "../apis/read.js";
     import {formatter} from "../utils/date.js";
-    import vueSeamlessScroll from 'vue-seamless-scroll'
+    import vueSeamlessScroll from 'vue-seamless-scroll';
+    import {getTimestamp} from '../utils/date_pro.js';
 
     export default {
       name: "Right",
@@ -35,6 +37,7 @@
       data() {
         return {
             formatter,
+            getTimestamp,
             now_url: this.$route.path,
             InfoParams:{
                 url: this.$route.path,
@@ -61,7 +64,6 @@
         }
       },
       created () {
-        console.log("now_url = ", this.now_url);
 
         GetInfoPost(this.InfoParams).then(response => {
             this.items.InfoItems = response.data.data;
@@ -106,11 +108,11 @@
 
 <style scoped lang="scss">
 .ranking_roll {
-    max-height: 710px;
+    max-height: 400px;
     overflow: hidden;
 }
 .eo-home-right {
-    width: 25%;
+    width: 21%;
     padding-left: 0.5vw;
     float: left;
 }
@@ -121,9 +123,7 @@
     overflow: hidden;
     background: #fffcf5;
 }
-.m-b-32 {
-    margin-bottom: 32px;
-}
+
 .eo-title-box {
     font-size: 24px;
     color: #333;
@@ -140,7 +140,7 @@
     position: absolute;
     top: 26px;
     left: 0;
-    width: 17%;
+    width: 19.5%;
     height: 6px;
     border-radius: 4px;
     background: #bb1c2c;
@@ -170,7 +170,8 @@ li .time {
     //line-height: 16px;
     display: flex;
     align-items: center;
-    margin-left: 68%;
+    margin-left: 73%;
+    margin-top: 10px
 }
 .eo-bottom-dashed {
     border-bottom: 1px dotted rgb(250, 122, 122);

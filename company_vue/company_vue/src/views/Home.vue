@@ -6,26 +6,40 @@
 <!--    </div> -->
 
     <div class="container c-t-cd">
-      <div style="margin-left: 0%">
-        <Left />
-      </div>
+
       <div class="comp-main">
         <div class="row c-d">
+          <div style="display: contents;">
+            <div class="slide" >
+              <input class="prev" type="button" value="<" v-on:click="prev()" />
 
-          <div class="slide" >
-            <input class="prev" type="button" value="<" v-on:click="prev()" />
+              <div v-for="(imgUrl, index) in bannerList" v-show="index===mark" :key="index" class="slideshow">
+                    <a target="_blank" :href="items.hangyeItems[index].url.replace('https://www.iyiou.com/analysis', 'info_more/hangye')" v-if="items.hangyeItems.length>0">
+                      <img :src=imgUrl style="width:100%; height:100%;" :alt="items.hangyeItems[index].title">
+                      <span class="news-text" :title="items.hangyeItems[index].title">{{items.hangyeItems[index].title}}</span>
+                    </a>
+              </div>
 
-            <div v-for="(imgUrl, index) in bannerList" v-show="index===mark" :key="index" class="slideshow">
-                  <a target="_blank" :href="items.hangyeItems[index].url.replace('https://www.iyiou.com/analysis', 'info_more/hangye')">
-                    <img :src=imgUrl style="width:100%; height:100%;" :alt="items.hangyeItems[index].title">
-                    <span class="news-text" :title="items.hangyeItems[index].title">{{items.hangyeItems[index].title}}</span>
-                  </a>
+              <input class="next" type="button" value=">" v-on:click="next()" />
+
+              <div class="bar">
+                   <span v-for="(item, index) in bannerList" :class="{ 'active':index===mark }" :key="index"></span>
+              </div>
             </div>
 
-            <input class="next" type="button" value=">" v-on:click="next()" />
-
-            <div class="bar">
-                 <span v-for="(item, index) in bannerList" :class="{ 'active':index===mark }" :key="index"></span>
+            <div class="news-right">
+              <div class="title">行业资讯&nbsp;·&nbsp;速递</div>
+              <a class="" v-for="(item,i) in items.hangyeItems" :key="i" v-if="i>3">
+                  <a target="_blank" class="item" :href="item.url.replace('https://www.iyiou.com/analysis', 'info_more/hangye')" v-if="item.url !== undefined && item.url.length>0">{{item.title}}</a>
+              </a>
+<!--              <a href="https://news.tianyancha.com/ll_cxr2l5txgo.html" class="item" title="双扬立体声+音质优化这些手机也能享受视听盛宴">双扬立体声+音质优化这些手机也能享受视听盛宴</a>
+              <a href="https://news.tianyancha.com/ll_a7nnfc6607.html" class="item" title="商丘市区这条路管道铺设和路面修复工程本月底完工！">商丘市区这条路管道铺设和路面修复工程本月底完工！</a>
+              <a href="https://news.tianyancha.com/ll_twbquudbvc.html" class="item" title="打造中国红树林保护新示范|湛江红树林湿地保护与修复项目">打造中国红树林保护新示范|湛江红树林湿地保护与修复项目</a>
+              <a href="https://news.tianyancha.com/ll_zwy7kfrmx3.html" class="item" title="昌邑市龙池镇龙北村魏专娣家庭事迹">昌邑市龙池镇龙北村魏专娣家庭事迹</a>
+              <a href="https://news.tianyancha.com/ll_8gptn6i34v.html" class="item" title="蒸箱和烤箱哪个实用？">蒸箱和烤箱哪个实用？</a>
+              <a href="https://news.tianyancha.com/ll_hjq2afj4cr.html" class="item" title="茶产业生态遭破坏，贵州凤冈县自然资源局被责令依法履行职责">茶产业生态遭破坏，贵州凤冈县自然资源局被责令依法履行职责</a>
+              <a href="https://news.tianyancha.com/ll_ku6p59mqhx.html" class="item" title="杭州姑娘被拉进群，刚开口就被踢：没想到这事会发生在我身上">杭州姑娘被拉进群，刚开口就被踢：没想到这事会发生在我身上</a>
+              <a href="https://news.tianyancha.com/ll_p3bal83ln7.html" class="item" title="开放式厨房装修,选择哪种抽油烟机好">开放式厨房装修,选择哪种抽油烟机好</a> -->
             </div>
           </div>
 
@@ -36,10 +50,10 @@
                   <h4 style="font-weight: bold" title="行业资讯">行业资讯</h4>
                 </div>
                 <ul class="list-group">
-                  <li class="list-group-item list-item" v-for="(item,i) in items.hangyeItems" :key="i">
+                  <li class="list-group-item list-item" v-for="(item,i) in items.hangyeItems" :key="i" v-if="i>2">
 
                       <div class="title">
-                        <a target="_blank" style="color: #1d1f21;font-weight:650;font-size: 14.5px;" :href="item.url.replace('https://www.iyiou.com/analysis', 'info_more/hangye')">{{item.title}}</a>
+                        <a target="_blank" style="color: #1d1f21;font-weight:650;font-size: 14.5px;" :href="item.url.replace('https://www.iyiou.com/analysis', 'info_more/hangye')" v-if="item.url !== undefined && item.url.length>0">{{item.title}}</a>
                       </div>
                       <div class="desc1" style="margin-top: 25px;">
                         <a>{{item.type}}</a>
@@ -52,8 +66,10 @@
           </section>
         </div>
       </div>
-      <div style="margin-right: -4%">
+
+      <div style="margin-right: -6%; display: contents;">
         <Right />
+        <Left />
       </div>
 
     </div>
@@ -122,7 +138,7 @@
           }
         },
         play () {
-          setInterval(this.autoPlay, 2500)
+          setInterval(this.autoPlay, 3500)
         },
         change (i) {
           this.mark = i
@@ -175,6 +191,9 @@
    height: 5vw;
 }
 
+.container {
+  max-width: 76%;
+}
 .c-t-cd {
     margin-top: 1vw;
 }
@@ -205,7 +224,7 @@
     font-size: 15px;
 }
 .comp-main {
-    width: 56%;
+    width: 79%;
     float: left;
     padding-left: 0.5vw;
 }
@@ -372,9 +391,9 @@ h4, .h4 {
 }
 
 .slide {
-    width: 100%;
+    width: 55%;
     height: 100%;
-    margin: 0 auto;
+    margin: 0 0 auto;
     // margin-top: 50px;
     overflow: hidden;
     position: relative;
@@ -399,12 +418,12 @@ h4, .h4 {
     text-align: end;
   }
   .bar span {
-    width: 20px;
-    height: 5px;
+    width: 12px;
+    height: 6px;
     border: 1px solid;
     background: white;
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 8px;
   }
   .active {
     background: #bfd6b6 !important;
@@ -437,7 +456,7 @@ h4, .h4 {
       left: 0;
       right: 0;
       padding: 11px 104px 11px 16px;
-      font-size: 16px;
+      font-size: 12.5px;
       line-height: 18px;
       background-color: rgba(0, 0, 0, 0.4);
       color: #fff;
@@ -446,4 +465,39 @@ h4, .h4 {
       white-space: nowrap;
   }
 
+  .news-right {
+      display: inline-block;
+      width: 45%;
+      padding-left: 25px;
+      vertical-align: top;
+  }
+  .news-right .title {
+      margin-bottom: 16px;
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: bold;
+      color: #333;
+  }
+  .news-right .item {
+      display: block;
+      margin-top: 8px;
+      padding-left: 12px;
+      line-height: 22px;
+      font-size: 14px;
+      color: #333;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+  }
+  .news-right .item:before {
+      content: '';
+      position: relative;
+      top: -4px;
+      left: -12px;
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: #ccc;
+  }
 </style>
